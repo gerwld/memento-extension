@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap');
+
+*,
+body,
+html {
+    font-family: "Pixelify Sans", serif !important;
+}

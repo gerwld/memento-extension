@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "version": "1.0.0",
+  "default_locale": "en",
+  "icons": {
+    "128": "src/assets/icons/icon128.png"
+  },
+  "action": {
+    "default_icon": {
+      "128": "src/assets/icons/icon128.png"
+    }
+  },
+  "chrome_url_overrides": {
+    "newtab": "src/content/newtab.html"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "src/assets/img/logo.svg",
+        "src/assets/js/init.js",
+        "src/assets/js/content.js",
+        "src/assets/js/settings.js",
+        "src/assets/graphs/fonts/noto_sans.css",
+        "src/assets/graphs/fonts/roboto.css",
+        "src/assets/graphs/fonts/poppins.css",
+        "src/assets/graphs/fonts/playfair.css",
+        "src/assets/graphs/fonts/merriweather.css",
+        "src/assets/graphs/fonts/noto_sans.css",
+        "src/assets/graphs/fonts/nunito.css",
+        "src/assets/graphs/fonts/montserrat.css",
+        "src/assets/graphs/fonts/pixelify.css",
+        "src/assets/graphs/fonts/gabarito.css",
+        "src/assets/graphs/fonts/roboto_condensed.css",
+        "src/assets/graphs/fonts/inter.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "content_scripts": [
+
+  ],
+  "background": {
+    "service_worker": "src/assets/js/background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "storage"
+  ]
+}
