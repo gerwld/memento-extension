@@ -60,7 +60,7 @@
 
   const notinbeta = ["en", "de", "es", "pl", "uk", "sv", "ar", "be"];
   const browser_lang = navigator?.language?.split("-")[0]?.toLowerCase() || "en"
-  browser_cr.storage.local.get("formState", async (result) => {
+  browser_cr.storage.local.get("formState", async (result) => {    
 
     const initialLang =
       result.formState.lang_set ? result.formState.lang_set

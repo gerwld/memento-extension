@@ -21,23 +21,9 @@
       const lang_set = document.getElementById("lang_set");
 
 
-      // Disable stories logic
-      function disableStories(state) {
-        const mp_item = container.querySelector('input[name="mp_disable_stories"]');
-        if (state?.ev_disable_stories) {
-          mp_item.setAttribute("disabled", true);
-          chrome.storage.local.set({ formState: { ...state, ev_disable_stories: true, mp_disable_stories: true } });
-        } else mp_item.disabled = false;
-      }
+   
 
-      // Nav to direct logic
-      function navToDirect(state) {
-        const mp_item = container.querySelector('input[name="mp_disable_recs"]');
-        if (state?.nav_to_messages_first) {
-          mp_item.setAttribute("disabled", true);
-          chrome.storage.local.set({ formState: { ...state, nav_to_messages_first: true, mp_disable_recs: true } });
-        } else mp_item.disabled = false;
-      }
+   
 
       // Listen for changes in chrome.storage.local
       let prevstate;
@@ -66,8 +52,6 @@
         // Retrieve state from extension storage or use the initial state
         chrome.storage.local.get("formState", (result) => {
           let state = result.formState ? result.formState : {};
-          disableStories(state);
-          navToDirect(state);
 
           if (!result.formState) {
             chrome.storage.local.set({ formState: state }, () => {
@@ -106,6 +90,8 @@
             console.log(e.target.value);
             // Save the updated state to extension storage
             chrome.storage.local.set({ formState: state }, () => {
+              console.log(state, e.target.value);
+              
               dispatchFormStateChangeEvent();
             });
           }
