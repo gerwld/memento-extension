@@ -21,10 +21,6 @@
       const lang_set = document.getElementById("lang_set");
 
 
-   
-
-   
-
       // Listen for changes in chrome.storage.local
       let prevstate;
       chrome.storage.local.onChanged.addListener((changes, namespace) => {
@@ -140,3 +136,39 @@
   })();
 })();
 
+
+// toggle settings menu part 
+const btnSettings = document.getElementById("btnsettings");
+const settingsBlock = document.getElementById("settingsdrawer");
+const DELAY_BEFORE_DISPLAY = 400;
+
+function toggleSettingsDrawer() {
+  if(settingsBlock.classList.contains("opened")) 
+    closeSettingsWithDelay();
+  else {
+    settingsBlock.classList.remove("displayNone");
+    btnSettings.classList.add("opened");
+    setTimeout(() => {
+      settingsBlock.classList.add("opened");
+    }, 50);
+  }
+}
+
+function closeSettingsWithDelay() {
+  settingsBlock.classList.remove("displayNone");
+  settingsBlock.classList.remove("opened");
+  btnSettings.classList.remove("opened");
+
+  setTimeout(() => {
+    settingsBlock.classList.add("displayNone");
+  }, DELAY_BEFORE_DISPLAY);
+}
+
+btnSettings.addEventListener("click", toggleSettingsDrawer)
+
+// on click outside
+document.body.addEventListener('click', function(event) {
+  if (settingsBlock && !settingsBlock.contains(event.target) && event.target !== settingsBlock && event.target !== btnSettings) {
+    closeSettingsWithDelay();
+  }
+});
