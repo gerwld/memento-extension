@@ -83,13 +83,21 @@ body.settings-opened #btnsettings {
 min-width: 121px;
 }
 
+#time-element .seconds.hidden {
+  min-width: 0px;
+}
+
 #time-element span {
   display: block;
 }
 
 #time-element .period {
-  margin-left: 0.08em;
+  margin-left: 0.02em;
   color: #6a6a6a;
+}
+
+#time-element .seconds.hidden + .period {
+  margin-left: .12em;
 }
 
 #date-element {

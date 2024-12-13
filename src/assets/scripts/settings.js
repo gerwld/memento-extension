@@ -151,6 +151,10 @@ function toggleSettingsDrawer() {
     setTimeout(() => {
       document.body.classList.add("settings-opened");
     }, 50);
+    // to prevent the issue where button was toggled multiple times & block do not appear
+    setTimeout(() => {
+      settingsBlock.classList.remove("displayNone");
+    }, DELAY_DISPLAY_NONE + 50)
   }
 }
 

@@ -79,20 +79,20 @@ task('minifyImg', async function () {
 
 //## Minify CSS  ##//
 task('minifyCSS', async function () {
-    src(['./src/assets/graphs/*.css', './src/assets/graphs/**/*.css', './src/assets/graphs/**/**/*.css'])
+    src(['./src/assets/styles/*.css', './src/assets/styles/**/*.css', './src/assets/styles/**/**/*.css'])
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(autoprefix('last 2 versions'))
         .pipe(insert.prepend(`/*\n${COPYRIGHT}*/\n\n`))
         .pipe(gulpFlatten({ includeParents: 4 }))
-        .pipe(dest('./public/firefox/assets/graphs/'))
+        .pipe(dest('./public/firefox/assets/styles/'))
 
-    src(['./src/assets/graphs/*.css', './src/assets/graphs/**/*.css', './src/assets/graphs/**/**/*.css'])
+    src(['./src/assets/styles/*.css', './src/assets/styles/**/*.css', './src/assets/styles/**/**/*.css'])
         .pipe(replace('moz-extension://', 'chrome-extension://'))
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(autoprefix('last 2 versions'))
         .pipe(insert.prepend(`/*\n${COPYRIGHT}*/\n\n`))
         .pipe(gulpFlatten({ includeParents: 4 }))
-        .pipe(dest('./public/chromium/assets/graphs/'))
+        .pipe(dest('./public/chromium/assets/styles/'))
 });
 
 //## Minify JS ##//

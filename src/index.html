@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New Tab</title>
   <link rel="icon" href="src/assets/icons/icon64.png" type="image/png">
-  <link rel="stylesheet" href="./assets/graphs/tab.css" />
-  <link rel="stylesheet" href="./assets/graphs/settings.css" />
+  <link rel="stylesheet" href="./assets/styles/tab.css" />
+  <link rel="stylesheet" href="./assets/styles/settings.css" />
 
 </head>
 
@@ -22,7 +22,7 @@
       <span class="period"></span>
     </div>
     <div id="date-element">
-      <span>Fri, 12 December 2024</span>
+      <span> </span>
     </div>
   </div>
 
@@ -61,11 +61,27 @@
       <form name="l3_settings" id="l3_settings">
         <section class="group">
           <span class="sect_lable" data-i18n="menu_main"> Main features: </span>
+
           <label class="ch_ip">
-            <input type="checkbox" name="focus_mode" />
+            <input type="checkbox" name="time__show_seconds" /> 
             <span class="ch_sp"></span>
-            <span data-i18n="mi_1">Enable Focus Mode</span>
+            <span data-i18n="mi_1">Show seconds</span>
           </label>
+
+          <label class="ch_ip">
+            <input type="checkbox" name="time__is_12_hours" /> 
+            <span class="ch_sp"></span>
+            <span data-i18n="mi_1">Enable 12h format</span>
+          </label>
+
+          <label class="ch_ip">
+            <input type="checkbox" name="time__show_time" /> 
+            <span class="ch_sp"></span>
+            <span data-i18n="mi_1">Show time</span>
+          </label>
+
+
+
           <label class="ch_ip">
             <input type="checkbox" name="header_btns" />
             <span class="ch_sp"></span>

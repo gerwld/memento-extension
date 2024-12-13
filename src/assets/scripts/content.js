@@ -16,8 +16,11 @@
 (() => {
   "use strict";
   (() => {
+    const browser_cr = chrome ? chrome : browser;
+    let interval0, interval1, interval2, interval3, interval4, interval5, interval6;
 
     const displayTime = ({showTime, showSeconds, is12HourFormat}) => {
+      clearInterval(interval0)
       const clockElement = document.querySelector("#time-element");
       const clockHours = clockElement.querySelector("span.hours");
       const clockMinutes = clockElement.querySelector("span.minutes");
@@ -63,27 +66,35 @@
           }
           // Update Seconds
            if(formattedSeconds !== lastDisplayedSeconds && showSeconds) {
+            clockSeconds.classList.remove("hidden");
             clockSeconds.textContent = ":" + formattedSeconds;
             lastDisplayedSeconds = formattedSeconds;
-          }
+          } 
+          else if (!showSeconds) {
+            clockSeconds.classList.add("hidden");
+            clockSeconds.textContent = "";
+          } 
+          
 
-          // Add prefix (if 12h) 
+          // Add / remove prefix (if 12h) 
           if (is12HourFormat && lastDisplayedPeriod !== period) { 
             clockElement.querySelector("span.period").textContent = " " + period;
             lastDisplayedPeriod = period;
-          }
+          } 
+          else if(!is12HourFormat) clockElement.querySelector("span.period").textContent = "";
 
           lastDisplayedTime = formattedTime;
         }
       };
 
-      setInterval(updateClock, 1000); // Update every second
+      interval0 = setInterval(updateClock, 1000); // Update every second
       updateClock(); // initial call to set the time immediately
     };
 
 
 
     const displayDayAndDate = ({ showFullDayName }) => {
+      clearInterval(interval1);
       const dayShowElement = document.querySelector("#date-element>span");
     
       const daysOfWeekFull = [
@@ -130,14 +141,48 @@
         }
       };
     
-      setInterval(updateDayAndDate, 60000); // Check every minute for changes
+      interval1 = setInterval(updateDayAndDate, 60000); // Check every minute for changes
       updateDayAndDate(); // Initial call to set the date immediately
     };    
 
 
 
 
-    displayDayAndDate({showFullDayName: true})
-    displayTime({showTime: true, showSeconds: true, is12HourFormat: true});
+    // ============== STATE APPLYING PART ================ //
+
+    // Part to get current state
+    function getCurrentState(oldState) {
+      browser_cr.storage.local.get("formState", async (result) => {
+        // Checks if extension is disabled or not
+        const state = result.formState.disabled ? { disabled: true } : result.formState;
+
+
+
+        // Chunks that change interface based on state
+        displayDayAndDate({showFullDayName: true})
+        displayTime({showTime: state.time__show_time, showSeconds: state.time__show_seconds, is12HourFormat: state.time__is_12_hours});
+
+      });
+    }
+
+
+
+
+    // Part to listen the state changes
+    browser_cr.storage.local.onChanged.addListener((changes, namespace) => {
+      if (
+        changes.formState &&
+        changes.formState.newValue &&
+        changes.formState.oldValue &&
+        JSON.stringify({ ...changes.formState.newValue }) !== JSON.stringify({ ...changes.formState.oldValue })
+      ) {
+        getCurrentState({ ...changes.formState.oldValue });
+      }
+    });
+
+
+
+
+    document.addEventListener("DOMContentLoaded", getCurrentState, false);
   })();
 })(this);
