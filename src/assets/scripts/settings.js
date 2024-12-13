@@ -137,7 +137,6 @@
   })();
 })();
 
-
 // toggle settings menu part 
 const btnSettings = document.getElementById("btnsettings");
 const settingsBlock = document.getElementById("settingsdrawer");

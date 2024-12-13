@@ -41,12 +41,14 @@ body {
   z-index: 1000;
 }
 
-#btnsettings:hover {
-  background-color: rgba(230, 230, 230, 0.24);
-}
-
 body.settings-opened #btnsettings {
   transform: rotate(45deg);
+  opacity: 0.5;
+}
+
+html body #btnsettings:hover {
+  background-color: rgba(230, 230, 230, 0.24);
+  opacity: 1;
 }
 
 #btnsettings svg {

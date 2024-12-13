@@ -92,3 +92,7 @@ Thumbs.db
 
 # Build dir
 public/
+dist/
+
+# Lock files
+pnpm-lock.yaml
