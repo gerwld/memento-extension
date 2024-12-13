@@ -154,8 +154,10 @@ function toggleSettingsDrawer() {
   }
 }
 
-function closeSettingsWithDelay() {
-  settingsBlock.classList.remove("displayNone");
+function closeSettingsWithDelay(isClickOutside) {
+  if(!isClickOutside) {
+    settingsBlock.classList.remove("displayNone");
+  }
   settingsBlock.classList.remove("opened");
   btnSettings.classList.remove("opened");
 
@@ -169,6 +171,6 @@ btnSettings.addEventListener("click", toggleSettingsDrawer)
 // on click outside
 document.body.addEventListener('click', function(event) {
   if (settingsBlock && !settingsBlock.contains(event.target) && event.target !== settingsBlock && event.target !== btnSettings) {
-    closeSettingsWithDelay();
+    closeSettingsWithDelay(true);
   }
 });
