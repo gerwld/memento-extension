@@ -1,8 +1,10 @@
 {
   "extensionName": {
-    "message": "Memento. - Minimalistic Startpage"
+    "message": "Memento. - Minimalistic Homepage",
+    "description": "Extension name"
   },
   "extensionDescription": {
-    "message": "Minimalistic startpage extension for your browser. Open-source, lightweight and secure."
+    "message": "Minimalistic homepage extension for your browser. Open-source, lightweight and secure.",
+    "description": "Extension description"
   }
 }

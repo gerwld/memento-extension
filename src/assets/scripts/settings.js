@@ -2,15 +2,16 @@
 //  <https://github.com/gerwld/Memento-extension/blob/main/README.md>,
 //   - Copyright (C) 2023-present Memento Extension
 //   -
-//   - Memento Extension is a software: you can redistribute it, but you are not allowed to modify it under the terms of the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License.
+//   - Memento Extension is a software: you can redistribute it and modify it under the terms of the MIT License.
 //   -
 //   - Memento Extension is distributed in the hope that it will be useful,
 //   - but WITHOUT ANY WARRANTY; without even the implied warranty of
 //   - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   - Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License for more details.
+//   - MIT License for more details.
 //   -
-//   - You should have received a copy of the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License
-//   - along with Memento Extension.  If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
+//   - You should have received a copy of the MIT License
+//   - along with Memento Extension.  If not, see <https://opensource.org/licenses/MIT>.
+
 
 (() => {
   "use strict";
@@ -140,16 +141,15 @@
 // toggle settings menu part 
 const btnSettings = document.getElementById("btnsettings");
 const settingsBlock = document.getElementById("settingsdrawer");
-const DELAY_BEFORE_DISPLAY = 400;
+const DELAY_DISPLAY_NONE = 400;
 
 function toggleSettingsDrawer() {
-  if(settingsBlock.classList.contains("opened")) 
+  if(document.body.classList.contains("settings-opened")) 
     closeSettingsWithDelay();
   else {
     settingsBlock.classList.remove("displayNone");
-    btnSettings.classList.add("opened");
     setTimeout(() => {
-      settingsBlock.classList.add("opened");
+      document.body.classList.add("settings-opened");
     }, 50);
   }
 }
@@ -158,12 +158,11 @@ function closeSettingsWithDelay(isClickOutside) {
   if(!isClickOutside) {
     settingsBlock.classList.remove("displayNone");
   }
-  settingsBlock.classList.remove("opened");
-  btnSettings.classList.remove("opened");
+  document.body.classList.remove("settings-opened");
 
   setTimeout(() => {
     settingsBlock.classList.add("displayNone");
-  }, DELAY_BEFORE_DISPLAY);
+  }, DELAY_DISPLAY_NONE);
 }
 
 btnSettings.addEventListener("click", toggleSettingsDrawer)

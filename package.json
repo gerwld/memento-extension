@@ -9,8 +9,8 @@
     "gbuild": "clear && rm -rf ./public && gulp build_md",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "P Jaworski",
-  "license": "CC BY-NC-ND 4.0",
+  "author": "P Jaworski (gerwld)",
+  "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.28.3",
     "gulp": "^4.0.2",

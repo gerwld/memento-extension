@@ -13,15 +13,15 @@
     }
   },
   "chrome_url_overrides": {
-    "newtab": "src/content/newtab.html"
+    "newtab": "src/index.html"
   },
   "web_accessible_resources": [
     {
       "resources": [
         "src/assets/img/logo.svg",
-        "src/assets/js/init.js",
-        "src/assets/js/content.js",
-        "src/assets/js/settings.js",
+        "src/assets/scripts/init.js",
+        "src/assets/scripts/content.js",
+        "src/assets/scripts/settings.js",
         "src/assets/graphs/fonts/noto_sans.css",
         "src/assets/graphs/fonts/roboto.css",
         "src/assets/graphs/fonts/poppins.css",
@@ -44,7 +44,7 @@
 
   ],
   "background": {
-    "service_worker": "src/assets/js/background.js",
+    "service_worker": "src/assets/scripts/background.js",
     "type": "module"
   },
   "permissions": [
