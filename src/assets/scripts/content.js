@@ -19,12 +19,19 @@
     const browser_cr = chrome ? chrome : browser;
     let interval0, interval1, interval2, interval3, interval4, interval5, interval6;
 
-    const displayTime = ({showTime, showSeconds, is12HourFormat}) => {
+    const displayTime = ({hideTime, showSeconds, is12HourFormat}) => {
       clearInterval(interval0)
       const clockElement = document.querySelector("#time-element");
       const clockHours = clockElement.querySelector("span.hours");
       const clockMinutes = clockElement.querySelector("span.minutes");
       const clockSeconds = clockElement.querySelector("span.seconds");
+
+      if(hideTime) {
+        clockElement.classList.add("hiden");
+        return null;
+      } else {
+        clockElement.classList.remove("hiden");
+      }
 
       let lastDisplayedTime = ""; // To track the last displayed time
       let lastDisplayedHours = "";
@@ -93,9 +100,16 @@
 
 
 
-    const displayDayAndDate = ({ showFullDayName }) => {
+    const displayDayAndDate = ({ showFullDayName, hideDate }) => {
       clearInterval(interval1);
       const dayShowElement = document.querySelector("#date-element>span");
+
+      if(hideDate) {
+        dayShowElement.classList.add("hiden");
+        return null;
+      } else {
+        dayShowElement.classList.remove("hiden");
+      }
     
       const daysOfWeekFull = [
         "Sunday",
@@ -159,8 +173,8 @@
 
 
         // Chunks that change interface based on state
-        displayDayAndDate({showFullDayName: true})
-        displayTime({showTime: state.time__show_time, showSeconds: state.time__show_seconds, is12HourFormat: state.time__is_12_hours});
+        displayDayAndDate({showFullDayName: true, hideDate: state.date__hide_date})
+        displayTime({hideTime: state.time__hide_time, showSeconds: state.time__show_seconds, is12HourFormat: state.time__is_12_hours});
 
       });
     }

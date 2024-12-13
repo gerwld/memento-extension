@@ -79,6 +79,11 @@ body.settings-opened #btnsettings {
   font-weight: 600;
 }
 
+#date-element>span.hiden,
+#time-element.hiden {
+  display: none;
+}
+
 #time-element .seconds {
 min-width: 121px;
 }
