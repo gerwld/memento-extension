@@ -1,0 +1,43 @@
+{
+  "extensionName": {
+    "message": "Memento. - 极简首页",
+    "description": "扩展名"
+  },
+  "extensionDescription": {
+    "message": "浏览器的极简首页扩展。开源、轻量且安全。",
+    "description": "扩展描述"
+  },
+  "menu_time": {
+    "message": "时间:"
+  },
+  "menu_date": {
+    "message": "日期:"
+  },
+  "menu_bg": {
+    "message": "背景:"
+  },
+  "menu_fonts": {
+    "message": "界面字体:"
+  },
+  "menu_other": {
+    "message": "其他:"
+  },
+  "mi_1": {
+    "message": "隐藏时间"
+  },
+  "mi_2": {
+    "message": "显示秒"
+  },
+  "mi_3": {
+    "message": "启用12小时格式"
+  },
+  "mi_4": {
+    "message": "隐藏日期"
+  },
+  "mi_5": {
+    "message": "模糊强度"
+  },
+  "mi_6": {
+    "message": "亮度"
+  }
+}

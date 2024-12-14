@@ -1,0 +1,43 @@
+{
+	"extensionName": {
+		"message": "Memento. - Minimalistische Startseite",
+		"description": "Erweiterungsname"
+	},
+	"extensionDescription": {
+		"message": "Minimalistische Startseiten-Erweiterung für Ihren Browser. Open-Source, leichtgewichtig und sicher.",
+		"description": "Erweiterungsbeschreibung"
+	},
+	"menu_time": {
+		"message": "Zeit:"
+	},
+	"menu_date": {
+		"message": "Datum:"
+	},
+	"menu_bg": {
+		"message": "Hintergrund:"
+	},
+	"menu_fonts": {
+		"message": "Schriftart der Benutzeroberfläche:"
+	},
+	"menu_other": {
+		"message": "Sonstiges:"
+	},
+	"mi_1": {
+		"message": "Zeit ausblenden"
+	},
+	"mi_2": {
+		"message": "Sekunden anzeigen"
+	},
+	"mi_3": {
+		"message": "12h-Format aktivieren"
+	},
+	"mi_4": {
+		"message": "Datum ausblenden"
+	},
+	"mi_5": {
+		"message": "Unschärfe-Intensität"
+	},
+	"mi_6": {
+		"message": "Helligkeit"
+	}
+}

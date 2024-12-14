@@ -1,0 +1,43 @@
+{
+	"extensionName": {
+		"message": "Memento. - Minimalistyczna Strona Główna",
+		"description": "Nazwa rozszerzenia"
+	},
+	"extensionDescription": {
+		"message": "Minimalistyczne rozszerzenie strony głównej dla Twojej przeglądarki. Open-source, lekkie i bezpieczne.",
+		"description": "Opis rozszerzenia"
+	},
+	"menu_time": {
+		"message": "Czas:"
+	},
+	"menu_date": {
+		"message": "Data:"
+	},
+	"menu_bg": {
+		"message": "Tło:"
+	},
+  "menu_fonts": {
+    "message": "Czcionka interfejsu:"
+  },
+	"menu_other": {
+		"message": "Inne:"
+	},
+	"mi_1": {
+		"message": "Ukryj czas"
+	},
+	"mi_2": {
+		"message": "Pokaż sekundy"
+	},
+	"mi_3": {
+		"message": "Włącz format 12-godzinny"
+	},
+	"mi_4": {
+		"message": "Ukryj datę"
+	},
+	"mi_5": {
+		"message": "Intensywność rozmycia"
+	},
+	"mi_6": {
+		"message": "Jasność"
+	}
+}

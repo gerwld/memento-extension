@@ -1,0 +1,43 @@
+{
+  "extensionName": {
+    "message": "Memento. - न्यूनतम होमपेज",
+    "description": "एक्सटेंशन का नाम"
+  },
+  "extensionDescription": {
+    "message": "आपके ब्राउज़र के लिए न्यूनतम होमपेज एक्सटेंशन। ओपन-सोर्स, हल्का और सुरक्षित।",
+    "description": "एक्सटेंशन विवरण"
+  },
+  "menu_time": {
+    "message": "समय:"
+  },
+  "menu_date": {
+    "message": "तारीख:"
+  },
+  "menu_bg": {
+    "message": "पृष्ठभूमि:"
+  },
+  "menu_fonts": {
+    "message": "इंटरफ़ेस फ़ॉन्ट:"
+  },
+  "menu_other": {
+    "message": "अन्य:"
+  },
+  "mi_1": {
+    "message": "समय छुपाएं"
+  },
+  "mi_2": {
+    "message": "सेकंड दिखाएं"
+  },
+  "mi_3": {
+    "message": "12 घंटे का प्रारूप सक्षम करें"
+  },
+  "mi_4": {
+    "message": "तारीख छुपाएं"
+  },
+  "mi_5": {
+    "message": "धुंधलापन तीव्रता"
+  },
+  "mi_6": {
+    "message": "चमक"
+  }
+}

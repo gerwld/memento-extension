@@ -1,0 +1,43 @@
+{
+	"extensionName": {
+		"message": "Memento. - Minimalistische Startpagina",
+		"description": "Extensienaam"
+	},
+	"extensionDescription": {
+		"message": "Minimalistische startpagina-extensie voor je browser. Open-source, lichtgewicht en veilig.",
+		"description": "Extensie beschrijving"
+	},
+	"menu_time": {
+		"message": "Tijd:"
+	},
+	"menu_date": {
+		"message": "Datum:"
+	},
+	"menu_bg": {
+		"message": "Achtergrond:"
+	},
+  "menu_fonts": {
+    "message": "Lettertype interface:"
+  },
+	"menu_other": {
+		"message": "Overig:"
+	},
+	"mi_1": {
+		"message": "Tijd verbergen"
+	},
+	"mi_2": {
+		"message": "Seconden tonen"
+	},
+	"mi_3": {
+		"message": "12-uurs formaat inschakelen"
+	},
+	"mi_4": {
+		"message": "Datum verbergen"
+	},
+	"mi_5": {
+		"message": "Wazigheid intensiteit"
+	},
+	"mi_6": {
+		"message": "Helderheid"
+	}
+}

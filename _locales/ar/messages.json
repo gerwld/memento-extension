@@ -1,0 +1,43 @@
+{
+  "extensionName": {
+    "message": "Memento. - صفحة رئيسية بسيطة",
+    "description": "اسم الإضافة"
+  },
+  "extensionDescription": {
+    "message": "إضافة للصفحة الرئيسية البسيطة لمتصفحك. مفتوحة المصدر، خفيفة وآمنة.",
+    "description": "وصف الإضافة"
+  },
+  "menu_time": {
+    "message": "الوقت:"
+  },
+  "menu_date": {
+    "message": "التاريخ:"
+  },
+  "menu_bg": {
+    "message": "الخلفية:"
+  },
+  "menu_fonts": {
+    "message": "خط الواجهة:"
+  },
+  "menu_other": {
+    "message": "أخرى:"
+  },
+  "mi_1": {
+    "message": "إخفاء الوقت"
+  },
+  "mi_2": {
+    "message": "عرض الثواني"
+  },
+  "mi_3": {
+    "message": "تمكين تنسيق 12 ساعة"
+  },
+  "mi_4": {
+    "message": "إخفاء التاريخ"
+  },
+  "mi_5": {
+    "message": "شدة التمويه"
+  },
+  "mi_6": {
+    "message": "السطوع"
+  }
+}

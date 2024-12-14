@@ -1,0 +1,43 @@
+{
+  "extensionName": {
+    "message": "Memento. - ミニマルなホームページ",
+    "description": "拡張機能の名前"
+  },
+  "extensionDescription": {
+    "message": "ブラウザ用のミニマルなホームページ拡張機能。オープンソースで軽量、安全です。",
+    "description": "拡張機能の説明"
+  },
+  "menu_time": {
+    "message": "時間:"
+  },
+  "menu_date": {
+    "message": "日付:"
+  },
+  "menu_bg": {
+    "message": "背景:"
+  },
+  "menu_fonts": {
+    "message": "インターフェイスフォント:"
+  },
+  "menu_other": {
+    "message": "その他:"
+  },
+  "mi_1": {
+    "message": "時間を隠す"
+  },
+  "mi_2": {
+    "message": "秒を表示"
+  },
+  "mi_3": {
+    "message": "12時間形式を有効化"
+  },
+  "mi_4": {
+    "message": "日付を隠す"
+  },
+  "mi_5": {
+    "message": "ぼかし強度"
+  },
+  "mi_6": {
+    "message": "明るさ"
+  }
+}

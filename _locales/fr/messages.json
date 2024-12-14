@@ -1,0 +1,43 @@
+{
+  "extensionName": {
+    "message": "Memento. - Page d'accueil minimaliste",
+    "description": "Nom de l'extension"
+  },
+  "extensionDescription": {
+    "message": "Extension de page d'accueil minimaliste pour votre navigateur. Open-source, légère et sécurisée.",
+    "description": "Description de l'extension"
+  },
+  "menu_time": {
+    "message": "Heure:"
+  },
+  "menu_date": {
+    "message": "Date:"
+  },
+  "menu_bg": {
+    "message": "Arrière-plan:"
+  },
+  "menu_fonts": {
+    "message": "Police de l'interface:"
+  },
+  "menu_other": {
+    "message": "Autre:"
+  },
+  "mi_1": {
+    "message": "Masquer l'heure"
+  },
+  "mi_2": {
+    "message": "Afficher les secondes"
+  },
+  "mi_3": {
+    "message": "Activer le format 12h"
+  },
+  "mi_4": {
+    "message": "Masquer la date"
+  },
+  "mi_5": {
+    "message": "Intensité du flou"
+  },
+  "mi_6": {
+    "message": "Luminosité"
+  }
+}

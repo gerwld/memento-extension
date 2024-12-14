@@ -1,0 +1,43 @@
+{
+  "extensionName": {
+    "message": "Memento. - Página Inicial Minimalista",
+    "description": "Nome da extensão"
+  },
+  "extensionDescription": {
+    "message": "Extensão de página inicial minimalista para o seu navegador. Código aberto, leve e seguro.",
+    "description": "Descrição da extensão"
+  },
+  "menu_time": {
+    "message": "Hora:"
+  },
+  "menu_date": {
+    "message": "Data:"
+  },
+  "menu_bg": {
+    "message": "Plano de Fundo:"
+  },
+  "menu_fonts": {
+    "message": "Fonte da Interface:"
+  },
+  "menu_other": {
+    "message": "Outros:"
+  },
+  "mi_1": {
+    "message": "Ocultar hora"
+  },
+  "mi_2": {
+    "message": "Mostrar segundos"
+  },
+  "mi_3": {
+    "message": "Ativar formato 12h"
+  },
+  "mi_4": {
+    "message": "Ocultar data"
+  },
+  "mi_5": {
+    "message": "Intensidade do Desfoque"
+  },
+  "mi_6": {
+    "message": "Brilho"
+  }
+}

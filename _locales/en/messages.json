@@ -1,10 +1,43 @@
 {
-  "extensionName": {
-    "message": "Memento. - Minimalistic Homepage",
-    "description": "Extension name"
+	"extensionName": {
+		"message": "Memento. - Minimalistic Homepage",
+		"description": "Extension name"
+	},
+	"extensionDescription": {
+		"message": "Minimalistic homepage extension for your browser. Open-source, lightweight and secure.",
+		"description": "Extension description"
+	},
+	"menu_time": {
+		"message": "Time:"
+	},
+	"menu_date": {
+		"message": "Date:"
+	},
+	"menu_bg": {
+		"message": "Background:"
+	},
+  "menu_fonts": {
+    "message": "Interface Font:"
   },
-  "extensionDescription": {
-    "message": "Minimalistic homepage extension for your browser. Open-source, lightweight and secure.",
-    "description": "Extension description"
-  }
+	"menu_other": {
+		"message": "Other:"
+	},
+	"mi_1": {
+		"message": "Hide time"
+	},
+	"mi_2": {
+		"message": "Show seconds"
+	},
+	"mi_3": {
+		"message": "Enable 12h format"
+	},
+	"mi_4": {
+		"message": "Hide date"
+	},
+	"mi_5": {
+		"message": "Blur Intensivity"
+	},
+	"mi_6": {
+		"message": "Brightness"
+	}
 }

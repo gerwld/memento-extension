@@ -1,0 +1,43 @@
+{
+	"extensionName": {
+		"message": "Memento. - Minimalistisk Startsida",
+		"description": "Tilläggsnamn"
+	},
+	"extensionDescription": {
+		"message": "Minimalistiskt startsidstillägg för din webbläsare. Öppen källkod, lättviktig och säker.",
+		"description": "Beskrivning av tillägget"
+	},
+	"menu_time": {
+		"message": "Tid:"
+	},
+	"menu_date": {
+		"message": "Datum:"
+	},
+	"menu_bg": {
+		"message": "Bakgrund:"
+	},
+	"menu_fonts": {
+		"message": "Gränssnittets Font:"
+	},
+	"menu_other": {
+		"message": "Övrigt:"
+	},
+	"mi_1": {
+		"message": "Dölj tid"
+	},
+	"mi_2": {
+		"message": "Visa sekunder"
+	},
+	"mi_3": {
+		"message": "Aktivera 12-timmarsformat"
+	},
+	"mi_4": {
+		"message": "Dölj datum"
+	},
+	"mi_5": {
+		"message": "Oskärpa Intensitet"
+	},
+	"mi_6": {
+		"message": "Ljusstyrka"
+	}
+}
