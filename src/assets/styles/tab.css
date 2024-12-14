@@ -12,13 +12,40 @@ html {
   overflow-x: hidden;
 }
 
+html {
+  --bg-blur: 10px;
+  --bg-brightness: 0.45;
+}
+
 body {
   margin: 0;
   min-height: 600px;
   height: 100vh;
   max-height: 100vh;
   box-sizing: border-box;
-  padding: 1em;
+  padding: 0;
+}
+
+#background_overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;right: 0;bottom: 0;
+  z-index: -1;
+}
+
+#background_overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter:  blur(var(--bg-blur)) brightness(var(--bg-brightness))
+}
+
+#background {
+  width: 110%;
+  height: 110%;
+  margin: -5%;  
 }
 
 #btnsettings {
@@ -70,15 +97,24 @@ html body #btnsettings:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
+  min-height: 400px;
+  height: 80vh;
+  height: calc(80vh - 70px);
   width: 100vw;
+  padding: 1em;
 }
 
 #time-element {
   display: flex;
-  font-size: 5rem;
   margin: 0.05em;
-  font-weight: 600;
+  font-size: 4rem;
+  font-weight: 300;
+}
+
+#time-element, 
+#date-element {
+  text-shadow: 1px 3px 5px rgba(0, 0, 0, .25);
+  font-weight: 300;
 }
 
 #date-element>span.hiden,
@@ -87,7 +123,7 @@ html body #btnsettings:hover {
 }
 
 #time-element .seconds {
-min-width: 121px;
+  min-width: 1.42em;
 }
 
 #time-element .seconds.hidden {
@@ -100,7 +136,7 @@ min-width: 121px;
 
 #time-element .period {
   margin-left: 0.02em;
-  color: #6a6a6a;
+  opacity: 0.5;
 }
 
 #time-element .seconds.hidden + .period {
@@ -110,4 +146,23 @@ min-width: 121px;
 #date-element {
   font-size: 1rem;
   margin: 0.2em;
+}
+
+#bgcredit_overlay {
+position: fixed;
+left: 4.2vh;
+left: 4.2vmin;
+bottom: 4.2vh;
+bottom: 4.2vmin;
+}
+
+#bgcredit_overlay a {
+  text-decoration: none;
+  color: #fff;
+  opacity: 0.5;
+  font-size: 0.8rem;
+}
+
+#bgcredit_overlay a:hover {
+  opacity: 0.8;
 }

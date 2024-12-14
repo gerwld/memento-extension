@@ -18,15 +18,17 @@
   (() => {
     const browser_cr = chrome ? chrome : browser;
     let interval0, interval1, interval2, interval3, interval4, interval5, interval6;
+    const fonts = ["roboto", "poppins", "caprasimo", "playfair", "merriweather", "noto_sans", "nunito", "montserrat", "pixelify", "gabarito", "roboto_condensed", "inter"];
 
-    const displayTime = ({hideTime, showSeconds, is12HourFormat}) => {
+
+    const displayTime = ({ hideTime, showSeconds, is12HourFormat }) => {
       clearInterval(interval0)
       const clockElement = document.querySelector("#time-element");
       const clockHours = clockElement.querySelector("span.hours");
       const clockMinutes = clockElement.querySelector("span.minutes");
       const clockSeconds = clockElement.querySelector("span.seconds");
 
-      if(hideTime) {
+      if (hideTime) {
         clockElement.classList.add("hiden");
         return null;
       } else {
@@ -62,33 +64,33 @@
         // Update the clock only if the time value changes
         if (formattedTime !== lastDisplayedTime) {
           // Update Hours
-          if(formattedHours !== lastDisplayedHours) {
+          if (formattedHours !== lastDisplayedHours) {
             clockHours.textContent = formattedHours;
             lastDisplayedHours = formattedHours;
           }
           // Update Minutes
-           if(formattedMinutes !== lastDisplayedMinutes) {
+          if (formattedMinutes !== lastDisplayedMinutes) {
             clockMinutes.textContent = formattedMinutes;
             lastDisplayedMinutes = formattedMinutes;
           }
           // Update Seconds
-           if(formattedSeconds !== lastDisplayedSeconds && showSeconds) {
+          if (formattedSeconds !== lastDisplayedSeconds && showSeconds) {
             clockSeconds.classList.remove("hidden");
             clockSeconds.textContent = ":" + formattedSeconds;
             lastDisplayedSeconds = formattedSeconds;
-          } 
+          }
           else if (!showSeconds) {
             clockSeconds.classList.add("hidden");
             clockSeconds.textContent = "";
-          } 
-          
+          }
+
 
           // Add / remove prefix (if 12h) 
-          if (is12HourFormat && lastDisplayedPeriod !== period) { 
+          if (is12HourFormat && lastDisplayedPeriod !== period) {
             clockElement.querySelector("span.period").textContent = " " + period;
             lastDisplayedPeriod = period;
-          } 
-          else if(!is12HourFormat) clockElement.querySelector("span.period").textContent = "";
+          }
+          else if (!is12HourFormat) clockElement.querySelector("span.period").textContent = "";
 
           lastDisplayedTime = formattedTime;
         }
@@ -104,13 +106,13 @@
       clearInterval(interval1);
       const dayShowElement = document.querySelector("#date-element>span");
 
-      if(hideDate) {
+      if (hideDate) {
         dayShowElement.classList.add("hiden");
         return null;
       } else {
         dayShowElement.classList.remove("hiden");
       }
-    
+
       const daysOfWeekFull = [
         "Sunday",
         "Monday",
@@ -120,7 +122,7 @@
         "Friday",
         "Saturday",
       ];
-    
+
       const monthsOfYear = [
         "January",
         "February",
@@ -135,32 +137,61 @@
         "November",
         "December",
       ];
-    
+
       let lastDisplayedDate = ""; // To track the last displayed date
-    
+
       const updateDayAndDate = () => {
         const now = new Date();
         const dayIndex = now.getDay();
         const date = now.getDate();
         const monthIndex = now.getMonth();
-    
+
         const dayName = daysOfWeekFull[dayIndex];
         const monthName = monthsOfYear[monthIndex];
-    
+
         const formattedDate = `${dayName}, ${date} ${monthName}`;
-    
+
         if (formattedDate !== lastDisplayedDate) {
           dayShowElement.textContent = formattedDate;
           lastDisplayedDate = formattedDate;
         }
       };
-    
+
       interval1 = setInterval(updateDayAndDate, 60000); // Check every minute for changes
       updateDayAndDate(); // Initial call to set the date immediately
-    };    
+    };
 
 
+    function setCSSConstant(prefix, value, addPX) {
+      if (!isNaN(value)) {
+        if (addPX)
+          value = value + "px"
+        document.documentElement.style.setProperty(prefix, value);
+      }
+    }
 
+
+    function setFont(selectedFont) {
+      // Set font if exists, then delete others
+      if (fonts.indexOf(selectedFont) !== -1) {
+        setOrRemoveStylesOfItem(`/assets/styles/fonts/${selectedFont}.css`, true, selectedFont);
+      }
+      fonts.filter((e) => e !== selectedFont).forEach((font) => document.getElementById(font)?.remove());
+    }
+
+    function setOrRemoveStylesOfItem(assetPath, item, item_id) {
+      // Fetch the CSS file and append it
+      fetch(browser_cr.runtime.getURL(assetPath))
+        .then((response) => response.text())
+        .then((css) => {
+          let current = document.getElementById(item_id);
+          let style = document.createElement("style");
+          style.textContent = css;
+          style.setAttribute("id", item_id);
+          if (item && !current) document.head.appendChild(style);
+          else if (!item && current instanceof Node) document.head.removeChild(current);
+        }).catch(_ => { });;
+    }
 
     // ============== STATE APPLYING PART ================ //
 
@@ -171,10 +202,14 @@
         const state = result.formState.disabled ? { disabled: true } : result.formState;
 
 
+        setFont(state.font);
+        setCSSConstant("--bg-blur", state.background_blur, true)
+        setCSSConstant("--bg-brightness", state.background_brightness, false)
+
 
         // Chunks that change interface based on state
-        displayDayAndDate({showFullDayName: true, hideDate: state.date__hide_date})
-        displayTime({hideTime: state.time__hide_time, showSeconds: state.time__show_seconds, is12HourFormat: state.time__is_12_hours});
+        displayDayAndDate({ showFullDayName: true, hideDate: state.date__hide_date })
+        displayTime({ hideTime: state.time__hide_time, showSeconds: state.time__show_seconds, is12HourFormat: state.time__is_12_hours });
 
       });
     }

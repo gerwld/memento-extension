@@ -105,6 +105,15 @@ task('minifyJS', async function () {
         .pipe(dest('./dist/firefox/assets/scripts/'))
 });
 
+//## Dev JS ##//
+task('devJS', async function () {
+    src(['./src/assets/scripts/*.js'])
+        .pipe(insert.prepend(COPYRIGHT))
+        .pipe(gulpFlatten({ includeParents: 4 }))
+        .pipe(dest('./dist/chromium/assets/scripts/'))
+        .pipe(dest('./dist/firefox/assets/scripts/'))
+});
+
 //## Minify HTML ##//
 task('minifyHTML', async function () {
     src(['./src/*.html'])
@@ -128,6 +137,15 @@ task('addOther', async function () {
     src(['./_locales/**/*'])
         .pipe(dest('./dist/chromium/_locales'))
         .pipe(dest('./dist/firefox/_locales'))
+});
+
+//## Minify JSON ##//
+task('minifyJSON', async function () {
+    src(['./src/services/*.json'])
+        // TODO 
+        .pipe(gulpFlatten({ includeParents: 4 }))
+        .pipe(dest('./dist/chromium/services/'))
+        .pipe(dest('./dist/firefox/services/'))
 });
 
 //## For source code .zip ##//
@@ -187,15 +205,16 @@ task('watch', function () {
     });
 });
 
-task('build', series('minifyImg', "minifyCSS", "minifyJS", "minifyHTML", "addOther"));
+task('build', series('minifyImg', "minifyCSS", "minifyJS", "minifyJSON", "minifyHTML", "addOther"));
+task('build_dev', series('minifyImg', "minifyCSS", "devJS", "minifyJSON", "minifyHTML", "addOther"));
 task('build_md', series('minifyImg', "minifyCSS", "minifyJS", "minifyHTML", "addOther", "source", "zipper"));
 
 // Task to run the build and start the watcher
-task('dev', series('build', 'watch'));
+task('dev', series('build_dev', 'watch'));
 // TODO: Faster Dev builds
-task('edge', series('build', 'watch'));
-task('firefox', series('build', 'watch'));
-task('chrome', series('build', 'watch'));
+task('edge', series('build_dev', 'watch'));
+task('firefox', series('build_dev', 'watch'));
+task('chrome', series('build_dev', 'watch'));
 
 
 task('default', series('build'));

@@ -10,6 +10,10 @@
 		"firefox": "npm run clean && gulp firefox",
 		"build": "npm run clean && gulp build",
 		"build:prod": "npm run clean && gulp build_md",
+		"fetch:morning": "python3 ./src/services/unsplash/fetch.py -n morning",
+		"fetch:day": "python3 ./src/services/unsplash/fetch.py -n day",
+		"fetch:night": "python3 ./src/services/unsplash/fetch.py -n night",
+    "fetch:all": "pnpm fetch:day && pnpm fetch:night && pnpm fetch:morning",
 		"test": "clear && echo 'Tests not implemented yet. Please check manually.'",
 		"clean": "rm -rf ./dist"
 	},

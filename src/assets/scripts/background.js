@@ -18,17 +18,7 @@ const initialState = {
   disabled: false,
   dark_mode: true,
   focus_mode: true,
-  bigger_navbar: true,
-  header_btns: true,
-  static_aside: false,
-  heart_icons: true,
-  block_images: false,
-  block_videos: false,
-  rect_avatars: false,
-  square_shaped: false,
-  now_play_disable: false,
-  theme: "purple_dark",
-  font: "inter",
+  font: "montserrat",
   timestamp: Date.now()
 };
 

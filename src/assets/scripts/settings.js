@@ -12,7 +12,7 @@
 //   - You should have received a copy of the MIT License
 //   - along with Memento Extension.  If not, see <https://opensource.org/licenses/MIT>.
 
-
+// Change state, initialize state, onChange update DOM part
 (() => {
   "use strict";
   (() => {
@@ -44,7 +44,7 @@
         window.dispatchEvent(formStateChangeEvent);
       }
 
-      function initializeUpdate() {
+      function initializeUpdate(isInitialCall) {
         console.log("rerender popup");
         // Retrieve state from extension storage or use the initial state
         chrome.storage.local.get("formState", (result) => {
@@ -73,6 +73,8 @@
             const inputs = document.querySelectorAll("input, select");
             for (let i = 0; i < inputs.length; i++) {
               const input = inputs[i];
+              if(input.type === "range" && !isInitialCall) return;
+              
               if (input.type === "checkbox") {
                 input.checked = state[input.name] || false;
               } else {
@@ -132,12 +134,14 @@
         });
       }
 
-      initializeUpdate();
+      initializeUpdate(true);
     });
   })();
 })();
 
-// toggle settings menu part 
+
+// Toggle aside settings menu part 
+(() => {
 const btnSettings = document.getElementById("btnsettings");
 const settingsBlock = document.getElementById("settingsdrawer");
 const DELAY_DISPLAY_NONE = 400;
@@ -176,3 +180,4 @@ document.body.addEventListener('click', function(event) {
     closeSettingsWithDelay(true);
   }
 });
+})();
