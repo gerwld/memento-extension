@@ -19,6 +19,13 @@ A minimalist, customizable start page extension for your browser. Open-source, l
 
 ---
 
+
+## 🛡️ Trust and Transparency  
+
+- **Open Source**: Built with transparency in mind.  
+- **Secure**: Your privacy is our priority.  
+
+
 ## 🌟 Features
 
 - **Custom Backgrounds**  

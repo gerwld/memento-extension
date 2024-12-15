@@ -16,82 +16,37 @@
   "permissions": [
     "storage"
   ],
-  "content_scripts": [
-    {
-      "matches": [
-        "*://open.spotify.com/*"
-      ],
-      "js": [
-        "assets/js/content.js"
-      ],
-      "css": [
-        "assets/styles/main.css"
-      ],
-      "run_at": "document_start"
-    }
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "web_accessible_resources": [
+        "/assets/img/logo.svg",
+        "/assets/scripts/init.js",
+        "/assets/scripts/content.js",
+        "/assets/scripts/background.js",
+        "/assets/scripts/settings.js",
+        "/assets/styles/fonts/noto_sans.css",
+        "/assets/styles/fonts/roboto.css",
+        "/assets/styles/fonts/poppins.css",
+        "/assets/styles/fonts/playfair.css",
+        "/assets/styles/fonts/merriweather.css",
+        "/assets/styles/fonts/noto_sans.css",
+        "/assets/styles/fonts/nunito.css",
+        "/assets/styles/fonts/montserrat.css",
+        "/assets/styles/fonts/pixelify.css",
+        "/assets/styles/fonts/gabarito.css",
+        "/assets/styles/fonts/roboto_condensed.css",
+        "/assets/styles/fonts/inter.css"
   ],
   "background": {
     "scripts": [
-      "assets/js/background.js"
+      "/assets/scripts/background.js"
     ],
-    "persistent": false
+    "persistent": true
   },
-  "web_accessible_resources": [
-    "assets/js/init.js",
-    "assets/styles/index.css",
-    "assets/styles/main.css",
-    "assets/styles/bigger_navbar.css",
-    "assets/styles/focus_mode.css",
-    "assets/styles/header_btns.css",
-    "assets/styles/static_aside.css",
-    "assets/styles/rect_avatars.css",
-    "assets/styles/block_images.css",
-    "assets/styles/block_videos.css",
-    "assets/styles/now_play_disable.css",
-    "assets/styles/square_shaped.css",
-    "assets/styles/themes/dark_pink.css",
-    "assets/styles/themes/light_green.css",
-    "assets/styles/themes/purple_dark.css",
-    "/assets/styles/fonts/noto_sans.css",
-    "/assets/styles/fonts/roboto.css",
-    "/assets/styles/fonts/poppins.css",
-    "/assets/styles/fonts/playfair.css",
-    "/assets/styles/fonts/merriweather.css",
-    "/assets/styles/fonts/noto_sans.css",
-    "/assets/styles/fonts/nunito.css",
-    "/assets/styles/fonts/montserrat.css",
-    "/assets/styles/fonts/pixelify.css",
-    "/assets/styles/fonts/gabarito.css",
-    "/assets/styles/fonts/roboto_condensed.css",
-    "/assets/styles/fonts/inter.css",
-    "/assets/styles/img/cup-border.png",
-    "/assets/img/frog.gif",
-    "/assets/img/logo.svg",
-    "assets/styles/themes/light_purple.css",
-    "assets/styles/themes/dark_red.css",
-    "assets/styles/themes/dark_yellow.css",
-    "assets/styles/themes/dark_blue.css",
-    "assets/styles/themes/amoled.css",
-    "assets/styles/themes/amoled_night.css",
-    "assets/styles/themes/light_pink.css",
-    "assets/styles/reduce_lowend.css",
-    "assets/styles/themes/light_pink_dd.css",
-    "assets/styles/themes/kimbie_dark.css",
-    "assets/styles/themes/red.css",
-    "assets/styles/themes/solarized_dark.css",
-    "assets/styles/themes/quiet_light.css",
-    "assets/styles/themes/dottie.css",
-    "assets/styles/heart_icons.css",
-    "assets/img/placeholders/ac-row-placeholder.png",
-    "assets/img/placeholders/ylx-artist-row-placeholder.png",
-    "assets/img/placeholders/tracklist-placeholder-compact.png",
-    "assets/img/placeholders/ylx-compact-row-placeholder.png",
-    "assets/img/placeholders/tracklist-placeholder.png",
-    "assets/img/placeholders/ylx-row-placeholder.png"
-  ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "{bd42a829-70e0-4781-83f3-2264420169b5}"
+      "id": "{bd42a329-70e0-4781-83f3-2264420129b5}"
     }
   }
 }

@@ -217,6 +217,7 @@ import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
     // Part to get current state
     function getCurrentState(oldState) {
       browser_cr.storage.local.get("formState", async (result) => {
+
         // Checks if extension is disabled or not
         const state = result.formState.disabled ? { disabled: true } : result.formState;
 

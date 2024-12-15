@@ -8,11 +8,8 @@ Memento does not collect or store any personal data from its users. We respect y
 
 ## Permissions
 
-The extension requests specific permissions to enhance your Browser experience. These permissions are used solely for the functionality and customization features offered by Memento. We do not access or transmit any personal or sensitive data.
+The extension requests specific permissions to enhance your Browser start page experience. These permissions are used solely for the functionality and customization features offered by Memento. We do not access or transmit any personal or sensitive data.
 
-## Host Permissions
-
-Host permissions are requested to allow Memento to interact with the Browser website. These permissions are used exclusively for implementing features such as theme customization, notification control, and other enhancements. We do not use host permissions to access external websites or collect user data.
 
 ## Data Security
 
@@ -20,7 +17,7 @@ Memento employs industry-standard security measures to protect user data. These 
 
 ## Updates and Maintenance
 
-I regularly update Memento to fix bugs, improve functionality, and enhance security. It is recommended to keep your extension up to date to ensure the best user experience and security.
+We regularly update Memento to fix bugs, improve functionality, and enhance security. It is recommended to keep your extension up to date to ensure the best user experience and security.
 
 ## Contact
 

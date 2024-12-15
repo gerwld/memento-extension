@@ -24,7 +24,7 @@ const initialState = {
   time__is_12_hours: true,
   date__hide_date: false,
   background_blur: 10,
-  background_brightness: 0.45,
+  background_brightness: 0.42,
   font: "roboto",
   timestamp: Date.now()
 };
@@ -33,7 +33,15 @@ const browser_cr = chrome ? chrome : browser;
 
 function initStateIfNotExist() {
   browser_cr.storage?.local?.get("formState", (result) => {
-    if (!result.formState || Object.keys(result.formState).length === 0) browser_cr.storage.local.set({ formState: { ...initialState } });
+    console.log(result, result?.formState);
+    
+    if (!result?.formState || Object.keys(result.formState).length < 4) {
+      if (typeof window !== "undefined" && window.location) {
+        window.location.reload();
+      }
+      browser_cr.storage.local.set({ formState: { ...initialState } });
+    }
+    
   });
 }
 
