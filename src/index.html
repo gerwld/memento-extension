@@ -110,7 +110,19 @@
         </section>
 
         <section class="group">
-          <span class="sect_lable" data-i18n="menu_bg"> Background: </span>
+      <span class="sect_lable" data-i18n="menu_bg">Background: </span>
+
+      <label class="ch_lp">
+        <span class="label" data-i18n="menu_bgtype">Background type:</span>
+        <select name="background_type" id="background_type">
+          <option value="unsplash">Unsplash</option>
+          <!-- <option value="local">Local File</option>
+          <option value="link">Link</option> -->
+          <option value="disabled">Disabled</option>
+        </select>
+      </label>
+
+         <div id="hide_no-bg">
           <label class="ch_slp">
             <span data-i18n="mi_5">Blur Intensivity</span>
             <input type="range" name="background_blur" min="0" max="25" step="0.1" value="0">
@@ -120,6 +132,7 @@
             <span data-i18n="mi_6">Brightness</span>
             <input type="range" name="background_brightness" min="0" max="1" step="0.01" value="0">
           </label>
+        </div>
         </section>
 
         <section class="group">
@@ -127,7 +140,7 @@
           <label class="ch_lp">
             <span class="label" data-i18n="menu_fonts">Interface Font:</span>
             <select name="font" id="font">
-              <option value="default">Default (CircularSpTitle)</option>
+              <option value="default">Default</option>
               <option value="pixelify">Pixelify</option>
               <option value="montserrat">Montserrat</option>
               <option value="poppins">Poppins</option>
@@ -157,10 +170,9 @@
 
   </aside>
 
-  <script src="./assets/scripts/setbackgrounds.js"></script>
-  <script src="./assets/scripts/settings.js"></script>
-  <script src="./assets/scripts/locales.js"></script>
-  <script src="./assets/scripts/content.js"></script>
+  <script src="./assets/scripts/tools/settings.js"></script>
+  <script src="./assets/scripts/tools/locales.js"></script>
+  <script type="module" src="./assets/scripts/content.js"></script>
 </body>
 
 </html>

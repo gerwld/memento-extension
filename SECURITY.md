@@ -8,11 +8,11 @@ Memento does not collect or store any personal data from its users. We respect y
 
 ## Permissions
 
-The extension requests specific permissions to enhance your Instagram experience. These permissions are used solely for the functionality and customization features offered by Memento. We do not access or transmit any personal or sensitive data.
+The extension requests specific permissions to enhance your Browser experience. These permissions are used solely for the functionality and customization features offered by Memento. We do not access or transmit any personal or sensitive data.
 
 ## Host Permissions
 
-Host permissions are requested to allow Memento to interact with the Instagram website. These permissions are used exclusively for implementing features such as theme customization, notification control, and other enhancements. We do not use host permissions to access external websites or collect user data.
+Host permissions are requested to allow Memento to interact with the Browser website. These permissions are used exclusively for implementing features such as theme customization, notification control, and other enhancements. We do not use host permissions to access external websites or collect user data.
 
 ## Data Security
 
@@ -26,4 +26,4 @@ I regularly update Memento to fix bugs, improve functionality, and enhance secur
 
 If you have any concerns, questions, or feedback regarding the security of Memento, please contact us at [pjaworski.dev@gmail.com]. I welcome your input and I am dedicated to continuously improving our security practices.
 
-Memento aims to provide a safe, customizable, and enjoyable Instagram experience without compromising your privacy or security. Thank you for choosing Memento as your chess enhancement tool.
+Memento aims to provide a safe, customizable, and enjoyable Browser experience without compromising your privacy or security. Thank you for choosing Memento as your chess enhancement tool.

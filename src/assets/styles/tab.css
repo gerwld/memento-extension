@@ -35,6 +35,10 @@ body {
   z-index: -1;
 }
 
+#background_overlay.hidden {
+  display: none;
+}
+
 #background_overlay img {
   width: 100%;
   height: 100%;
@@ -124,9 +128,11 @@ html body #btnsettings:hover {
 
 #time-element .seconds {
   min-width: 1.42em;
+  margin-right: -0.32em;
 }
 
 #time-element .seconds.hidden {
+  display: none;
   min-width: 0px;
 }
 
@@ -135,12 +141,14 @@ html body #btnsettings:hover {
 }
 
 #time-element .period {
+  display: none;
   margin-left: 0.02em;
   opacity: 0.5;
 }
 
 #time-element .seconds.hidden + .period {
   margin-left: .12em;
+  margin-right: 0;
 }
 
 #date-element {
@@ -154,6 +162,10 @@ left: 4.2vh;
 left: 4.2vmin;
 bottom: 4.2vh;
 bottom: 4.2vmin;
+}
+
+#bgcredit_overlay.hidden {
+  display: none;
 }
 
 #bgcredit_overlay a {

@@ -2,15 +2,17 @@
 //  <https://github.com/gerwld/Memento-extension/blob/main/README.md>,
 //   - Copyright (C) 2023-present Memento Extension
 //   -
-//   - Memento Extension is a software: you can redistribute it and modify it under the terms of the MIT License.
+//   - Memento Extension is a software: you can redistribute it, but you are not allowed to modify it under the terms of the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License.
 //   -
 //   - Memento Extension is distributed in the hope that it will be useful,
 //   - but WITHOUT ANY WARRANTY; without even the implied warranty of
 //   - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   - MIT License for more details.
+//   - Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License for more details.
 //   -
-//   - You should have received a copy of the MIT License
-//   - along with Memento Extension.  If not, see <https://opensource.org/licenses/MIT>.
+//   - You should have received a copy of the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License
+//   - along with Memento Extension.  If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
+
+
 
 // Change state, initialize state, onChange update DOM part
 (() => {
@@ -150,25 +152,25 @@ function toggleSettingsDrawer() {
   if(document.body.classList.contains("settings-opened")) 
     closeSettingsWithDelay();
   else {
-    settingsBlock.classList.remove("displayNone");
+    // settingsBlock.classList.remove("displayNone");
     setTimeout(() => {
       document.body.classList.add("settings-opened");
     }, 50);
     // to prevent the issue where button was toggled multiple times & block do not appear
     setTimeout(() => {
-      settingsBlock.classList.remove("displayNone");
+      // settingsBlock.classList.remove("displayNone");
     }, DELAY_DISPLAY_NONE + 50)
   }
 }
 
 function closeSettingsWithDelay(isClickOutside) {
   if(!isClickOutside) {
-    settingsBlock.classList.remove("displayNone");
+    // settingsBlock.classList.remove("displayNone");
   }
   document.body.classList.remove("settings-opened");
 
   setTimeout(() => {
-    settingsBlock.classList.add("displayNone");
+    // settingsBlock.classList.add("displayNone");
   }, DELAY_DISPLAY_NONE);
 }
 

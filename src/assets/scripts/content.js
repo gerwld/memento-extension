@@ -2,15 +2,19 @@
 //  <https://github.com/gerwld/Memento-extension/blob/main/README.md>,
 //   - Copyright (C) 2023-present Memento Extension
 //   -
-//   - Memento Extension is a software: you can redistribute it and modify it under the terms of the MIT License.
+//   - Memento Extension is a software: you can redistribute it, but you are not allowed to modify it under the terms of the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License.
 //   -
 //   - Memento Extension is distributed in the hope that it will be useful,
 //   - but WITHOUT ANY WARRANTY; without even the implied warranty of
 //   - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   - MIT License for more details.
+//   - Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License for more details.
 //   -
-//   - You should have received a copy of the MIT License
-//   - along with Memento Extension.  If not, see <https://opensource.org/licenses/MIT>.
+//   - You should have received a copy of the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License
+//   - along with Memento Extension.  If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
+
+import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
+
+
 
 
 (() => {
@@ -49,7 +53,7 @@
         let period = "";
 
         if (is12HourFormat) { // converts to 12-hour format
-          period = hours >= 12 ? "PM" : "AM";
+          // period = hours >= 12 ? "PM" : "AM";
           hours = hours % 12 || 12;
         }
 
@@ -170,6 +174,21 @@
       }
     }
 
+    function setBackground(selectedType, selectedValue) {
+      // TODO: Better background set
+
+      if(selectedType === "unsplash") setUnsplashBackground();
+      else setUnsplashBackground(true);
+
+      if(selectedType === "disabled") {
+        document.getElementById('hide_no-bg').classList.add("hidden")
+        document.getElementById('background_overlay').classList.add("hidden")
+      } else {
+        document.getElementById('hide_no-bg').classList.remove("hidden")
+        document.getElementById('background_overlay').classList.remove("hidden")
+      }
+    }
+
 
     function setFont(selectedFont) {
       // Set font if exists, then delete others
@@ -210,7 +229,7 @@
         // Chunks that change interface based on state
         displayDayAndDate({ showFullDayName: true, hideDate: state.date__hide_date })
         displayTime({ hideTime: state.time__hide_time, showSeconds: state.time__show_seconds, is12HourFormat: state.time__is_12_hours });
-
+        setBackground(state.background_type)
       });
     }
 

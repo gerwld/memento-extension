@@ -1,61 +1,96 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/gerwld/memento-extension/8765ded5cef43659500cef369b9bfdc6b81d0b70/assets/img/logo.svg" width="75" height="75"/>
+  <img src="https://github.com/gerwld/memento-extension/blob/main/src/assets/icons/icon128.png?raw=true" width="75" height="75"/>
 </p>
+
+<h1 align="center">Memento Extension</h1>
 
 <p align="center">
- <h1 align="center">Memento Extension</h1>
+A minimalist, customizable start page extension for your browser. Open-source, lightweight, and secure, Memento enhances your browsing experience with intuitive customization and a clean design.
 </p>
-
-<p align="center">
-Memento is a powerful Extension that allows you to customize and personalize your Instagram experience. With this tool, you can transform the Instagram interface into a personalized platform that reflects your preferences and style.
-</p>
-
-***
-
-<p align="center"><a rel="noreferrer noopener" href="https://chromewebstore.google.com/detail/memento-remove-instagram-r/dbbopjndlaginbghfoibbndhlbpdpapd"><img alt="Chrome Web Store" src="https://img.shields.io/badge/Chrome-141e24.svg?&style=for-the-badge&logo=google-chrome&logoColor=white"></a>  <a rel="noreferrer noopener" href="https://addons.mozilla.org/en-US/firefox/addon/memento-extension/"><img alt="Firefox Add-ons" src="https://img.shields.io/badge/Firefox-141e24.svg?&style=for-the-badge&logo=firefox-browser&logoColor=white"></a>  <a rel="noreferrer noopener" href="https://microsoftedge.microsoft.com/addons/detail/memento-remove-instagram/gcjgjfjabmgpainpahloaldflhfnppai"><img alt="Edge Addons" src="https://img.shields.io/badge/Edge-141e24.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white"></a>  <a href="#soon" title="Soon" rel="noreferrer noopener"><img height="28" alt="Apple App Store" src="https://img.shields.io/badge/Safari-141e24.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white"></a>
-
-
-
-## Features
-
-- **Classic Mode:** Bring back the nostalgic interface of an earlier version of Instagram with the Classic Mode option.
-- **Reels and Explore Disable:** Disable the Reels section and videos, as well as the Explore page to have more control over your Instagram feed.
-- **Stories Disable:** Remove the Stories section from the main page and disable Stories everywhere for a cleaner and distraction-free interface.
-- **Aside Count Labels:** Make the count labels in the aside section appear in gray or disable them completely for a more streamlined look.
-- **Color Palette and Font Selection:** Choose from a variety of color palettes and fonts to customize the appearance of Instagram to your liking.
-- **Additional Features:** Disable recommendations on the main page, hide likes and followers count, enable grayscale mode, make everything square-shaped, and block videos or images to reduce traffic usage.
-
-## Installation
-
-Memento is available on the [Google Chrome Store](https://chrome.google.com/webstore/detail/memento-remove-instagram-s/dbbopjndlaginbghfoibbndhlbpdpapd), [Firefox Web Store](https://addons.mozilla.org/en-US/firefox/addon/memento-extension/) and [Microsoft Edge Store](https://microsoftedge.microsoft.com/addons/detail/memento-remove-instagram/gcjgjfjabmgpainpahloaldflhfnppai). Visit the store page and click on the "Add" button to install the extension directly to your browser.
-
-You can also download the latest version of Memento Extension from the [Releases](https://github.com/gerwld/memento-extension/releases) page. Choose the appropriate version for your operating system and follow the installation instructions provided.
-
-## Usage
-
-Once the extension is installed, follow these steps to start customizing your Instagram experience:
-
-1. **Activation:** Open Instagram in your Google Chrome browser.
-2. **Extension Access:** Click on the Memento Extension icon in the browser toolbar to activate it.
-3. **Customization:** Access the extension options to start customizing your Instagram interface. Choose from various customization features, including Classic Mode, disabling sections, adjusting colors and fonts, and enabling additional features.
-4. **Enjoy!** Sit back, relax, and enjoy your personalized Instagram experience.
-
-## Contributing
-
-Contributions are welcome! If you find any issues or have ideas for new features, feel free to open an issue or submit a pull request.
-
-## License
-
-Memento Extension is released under the MIT Licence. This means that others are free to use, modify, and distribute the extension for any purposes, as long as they provide attribution to the original creator. Commercial use of the extension is allowed without explicit permission.
-
-See the [LICENSE](LICENSE) file for more details.
-
-For any inquiries regarding commercial use or permission, please contact the creator at [pjaworski.dev@gmail.com].
-
-## Contact
-
-If you have any questions, suggestions, or feedback, please feel free to contact us at [pjaworski.dev@gmail.com].
 
 ---
 
-Enhance your Instagram experience with Memento Extension and enjoy a customized interface that reflects your style and preferences. Download now and take your Instagram usage to the next level.
+<p align="center">
+<a rel="noreferrer noopener" href="#"><img alt="Chrome Web Store" src="https://img.shields.io/badge/Chrome-141e24.svg?&style=for-the-badge&logo=google-chrome&logoColor=white"></a>
+<a rel="noreferrer noopener" href="#"><img alt="Firefox Add-ons" src="https://img.shields.io/badge/Firefox-141e24.svg?&style=for-the-badge&logo=firefox-browser&logoColor=white"></a>
+<a rel="noreferrer noopener" href="#"><img alt="Edge Addons" src="https://img.shields.io/badge/Edge-141e24.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white"></a>
+<a href="#soon" title="Coming Soon" rel="noreferrer noopener"><img height="28" alt="Safari Add-ons" src="https://img.shields.io/badge/Safari-141e24.svg?&style=for-the-badge&logo=safari&logoColor=white"></a>
+</p>
+
+---
+
+## 🌟 Features
+
+- **Custom Backgrounds**  
+  Replace the default new tab page background with high-quality Unsplash images or remove it entirely for a minimalist look.
+
+- **Blur and Brightness Controls**  
+  Adjust page visuals with intuitive sliders to suit your aesthetic preferences.
+
+- **Clock and Localization**  
+  Supports both 12-hour and 24-hour clock formats, along with 12 language options, making it accessible globally.
+
+- **Minimalist and Lightweight**  
+  Keeps your new tab experience fast and distraction-free without unnecessary clutter.
+
+---
+
+## 🚀 Installation
+
+Install Memento directly from your browser's extension store:
+
+- [**Chrome Web Store**](https://chrome.google.com/webstore/detail/memento-remove-instagram-s/dbbopjndlaginbghfoibbndhlbpdpapd)  
+- [**Firefox Add-ons**](https://addons.mozilla.org/en-US/firefox/addon/memento-extension/)  
+- [**Microsoft Edge Add-ons**](https://microsoftedge.microsoft.com/addons/detail/memento-remove-instagram/gcjgjfjabmgpainpahloaldflhfnppai)
+
+For manual installation, download the latest release from the [Releases](https://github.com/gerwld/memento-extension/releases) page and follow the provided setup instructions.
+
+---
+
+## 🛠️ Usage
+
+1. **Open a New Tab**  
+   Once installed, Memento automatically replaces your browser's default new tab page.
+
+2. **Access Settings**  
+   Click the Memento icon in your browser toolbar to configure its options.
+
+3. **Customize Your Page**  
+   - Toggle background images on or off.  
+   - Adjust blur and brightness levels.  
+   - Switch between clock formats and supported languages.
+
+4. **Enjoy Your Start Page**  
+   A sleek, distraction-free page tailored to your style.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! If you want to report a bug, suggest new features, or improve the codebase, you can:  
+
+- Open an issue  
+- Submit a pull request  
+
+For detailed contribution guidelines, check out the [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
+## 📜 License
+
+Memento is released under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)](LICENSE).  
+- **Free for Personal Use**: Share and use non-commercially with proper attribution.  
+- **No Modifications or Commercial Use**: Modifications and commercial use require explicit permission.
+
+For commercial inquiries, contact us at [pjaworski.dev@gmail.com](mailto:pjaworski.dev@gmail.com).
+
+---
+
+## 📬 Contact
+
+For questions, feedback, or support, reach out to:  
+**[pjaworski.dev@gmail.com](mailto:pjaworski.dev@gmail.com)**  
+
+---
+
+Simplify your browser's start page with Memento—a clean, secure, and customizable experience built with care. Download it now and enhance your browsing workflow.

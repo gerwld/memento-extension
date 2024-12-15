@@ -2,19 +2,22 @@
 //  <https://github.com/gerwld/Memento-extension/blob/main/README.md>,
 //   - Copyright (C) 2023-present Memento Extension
 //   -
-//   - Memento Extension is a software: you can redistribute it and modify it under the terms of the MIT License.
+//   - Memento Extension is a software: you can redistribute it, but you are not allowed to modify it under the terms of the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License.
 //   -
 //   - Memento Extension is distributed in the hope that it will be useful,
 //   - but WITHOUT ANY WARRANTY; without even the implied warranty of
 //   - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   - MIT License for more details.
+//   - Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License for more details.
 //   -
-//   - You should have received a copy of the MIT License
-//   - along with Memento Extension.  If not, see <https://opensource.org/licenses/MIT>.
+//   - You should have received a copy of the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License
+//   - along with Memento Extension.  If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
+
+
 
 
 
 import gulp from 'gulp';
+import babel from 'gulp-babel';
 import svgmin from 'gulp-svgmin';
 import autoprefix from 'gulp-autoprefixer';
 import cleanCSS from 'gulp-clean-css';
@@ -39,15 +42,17 @@ const COPYRIGHT = `//   - This file is part of Memento Extension
 //  <https://github.com/gerwld/Memento-extension/blob/main/README.md>,
 //   - Copyright (C) 2023-present Memento Extension
 //   -
-//   - Memento Extension is a software: you can redistribute it and modify it under the terms of the MIT License.
+//   - Memento Extension is a software: you can redistribute it, but you are not allowed to modify it under the terms of the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License.
 //   -
 //   - Memento Extension is distributed in the hope that it will be useful,
 //   - but WITHOUT ANY WARRANTY; without even the implied warranty of
 //   - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   - MIT License for more details.
+//   - Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License for more details.
 //   -
-//   - You should have received a copy of the MIT License
-//   - along with Memento Extension.  If not, see <https://opensource.org/licenses/MIT>.
+//   - You should have received a copy of the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License
+//   - along with Memento Extension.  If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
+
+
 
 `
 
@@ -98,20 +103,41 @@ task('minifyCSS', async function () {
 //## Minify JS ##//
 task('minifyJS', async function () {
     src(['./src/assets/scripts/*.js'])
+        // .pipe(replace(/@@\//g, './'))
         .pipe(uglify())
         .pipe(insert.prepend(COPYRIGHT))
-        .pipe(gulpFlatten({ includeParents: 4 }))
         .pipe(dest('./dist/chromium/assets/scripts/'))
         .pipe(dest('./dist/firefox/assets/scripts/'))
+
+    src(['./src/assets/scripts/tools/*.js'])
+        .pipe(uglify())
+        .pipe(insert.prepend(COPYRIGHT))
+        .pipe(dest('./dist/chromium/assets/scripts/tools/'))
+        .pipe(dest('./dist/firefox/assets/scripts/tools/'))
+
+    src(['./src/assets/scripts/units/*.js'])
+        .pipe(uglify())
+        .pipe(insert.prepend(COPYRIGHT))
+        .pipe(dest('./dist/chromium/assets/scripts/units/'))
+        .pipe(dest('./dist/firefox/assets/scripts/units/'))
 });
 
 //## Dev JS ##//
 task('devJS', async function () {
     src(['./src/assets/scripts/*.js'])
         .pipe(insert.prepend(COPYRIGHT))
-        .pipe(gulpFlatten({ includeParents: 4 }))
         .pipe(dest('./dist/chromium/assets/scripts/'))
         .pipe(dest('./dist/firefox/assets/scripts/'))
+
+    src(['./src/assets/scripts/tools/*.js'])
+        .pipe(insert.prepend(COPYRIGHT))
+        .pipe(dest('./dist/chromium/assets/scripts/tools/'))
+        .pipe(dest('./dist/firefox/assets/scripts/tools/'))
+
+    src(['./src/assets/scripts/units/*.js'])
+        .pipe(insert.prepend(COPYRIGHT))
+        .pipe(dest('./dist/chromium/assets/scripts/units/'))
+        .pipe(dest('./dist/firefox/assets/scripts/units/'))
 });
 
 //## Minify HTML ##//
@@ -207,7 +233,7 @@ task('watch', function () {
 
 task('build', series('minifyImg', "minifyCSS", "minifyJS", "minifyJSON", "minifyHTML", "addOther"));
 task('build_dev', series('minifyImg', "minifyCSS", "devJS", "minifyJSON", "minifyHTML", "addOther"));
-task('build_md', series('minifyImg', "minifyCSS", "minifyJS", "minifyHTML", "addOther", "source", "zipper"));
+task('build_md', series('minifyImg', "minifyCSS", "minifyJS", "minifyJSON", "minifyHTML", "addOther", "source", "zipper"));
 
 // Task to run the build and start the watcher
 task('dev', series('build_dev', 'watch'));
