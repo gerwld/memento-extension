@@ -53,6 +53,7 @@
   height: calc(100vh - 20px);
 
   padding: 10px;
+  padding-right: 5px;
   overflow-y: scroll;
   opacity: 0;
   pointer-events: none;
@@ -72,6 +73,8 @@ body.settings-opened .settings-drawer {
   right: 0px;
   opacity: 1;
   pointer-events: auto;
+  border: 1px solid #444;
+  border-right: none;
 }
 
 .page-content {
@@ -364,14 +367,14 @@ html[lang="hi"] body {
 }
 
 .btn_header {
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   padding: 0;
-  margin: 0 0 0 2px;
+  margin: 0 8px 0 2px;
 
   font-size: 0rem !important;
   background: no-repeat 50% 50%;
-  background-size: 22px 22px;
+  background-size: 28px 28px;
   background-color: transparent;
   border-radius: 5px;
   border: 2px solid transparent;
@@ -532,7 +535,13 @@ section.group .hidden * {
   align-items: flex-end;
   justify-content: flex-end;
   padding: 5px 10px 10px;
-  border-top: var(--main-border);
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+}
+
+.links [data-i18n="btn_reqfeature"] {
+  font-size: 0.86rem;
 }
 
 .links button,
@@ -614,7 +623,7 @@ a img {
   padding: 5px 5px 5px 10px;
   margin-left: auto;
   box-sizing: border-box;
-  border-radius: 7px;
+  border-radius: 10px;
   border: 1px solid #515454;
   background: var(--background-contrast);
   font-size: 0.78rem;
@@ -1064,7 +1073,7 @@ a.don_btn {
 
 .ch_slp input {
   margin-right: 3px;
-  width: 200px;
+  width: 180px;
 }
 
 
@@ -1184,3 +1193,44 @@ input[type="range"]::-ms-thumb:hover {
   background: #0056b3;
   transform: scale(1.2);
 }
+
+.bgtype_content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ch_lp__background {
+  justify-content: space-between;
+}
+
+.ch_lp__background #bg_reload.hidden {
+  display: none;
+}
+
+.bg_reloadbtn {
+  --wb: 1.8rem;
+  flex: var(--wb) 0 0;
+  width: var(--wb);
+  height: var(--wb);
+  border-radius: 50%;
+  border: none;
+  margin-right: 0.4rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: #444449;
+}
+
+.bg_reloadbtn svg {
+  color: #fff;
+  width: 70%;
+  height: 70%;
+  pointer-events: none;
+}
+
+/* button.bg_reloadbtn:hover {
+  opacity: 0.8;
+} */

@@ -14,19 +14,25 @@
 
 
 
-
+let is12HourFormat = false; // Default fallback
+try {
+    is12HourFormat = new Date().toLocaleString('en', { hour: '2-digit', hour12: true }).indexOf(':') !== -1;
+} catch (error) {
+    console.warn('Error determining time format:', error);
+}
 
 const initialState = {
   disabled: false,
   background_type: "unsplash",
   time__hide_time: false,
   time__show_seconds: false,
-  time__is_12_hours: true,
+  time__is_12_hours: is12HourFormat, 
   date__hide_date: false,
   background_blur: 10,
-  background_brightness: 0.42,
-  font: "roboto",
-  timestamp: Date.now()
+  background_brightness: 0.22,
+  font: "caprasimo",
+  timestamp: Date.now(),
+  background_local: null // index of selected image in localStorage.getItem("savedImages")
 };
 
 const browser_cr = chrome ? chrome : browser;

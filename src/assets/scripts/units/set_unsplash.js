@@ -7,6 +7,8 @@ const loadJSON = async (filePath) => {
   return response.json();
 };
 
+
+
 // Function to download an image and check the status
 const downloadImage = async (url) => {
   const response = await fetch(url);
@@ -16,12 +18,18 @@ const downloadImage = async (url) => {
   return response.blob();
 };
 
+
+
+
 // Function to save data to localStorage
 const saveToLocalStorage = (key, value) => {
   const data = JSON.parse(localStorage.getItem(key)) || [];
   data.push(value);
   localStorage.setItem(key, JSON.stringify(data));
 };
+
+
+
 
 // Function to append an image & credits to the DOM
 const appendImageToDOM = (imageBlob, selectedItem) => {
@@ -50,26 +58,34 @@ const appendImageToDOM = (imageBlob, selectedItem) => {
 
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+  const reloadBTN = document.querySelector(".bg_reloadbtn");
+  reloadBTN.addEventListener("click", () => {
+    console.log("fetch");
+    fetchNew();
+  });
+});
+
+
+function getTimeBasedPrefix() {
+  const currentHour = new Date().getHours();
+  if (currentHour < 12) return "_morning";
+  if (currentHour >= 18) return "_night";
+  return "_day";
+}
+
+
 // Main logic
 const setUnsplashBackground = async (isDisable) => {
   if (isDisable) {
     document.querySelector("#bgcredit_overlay").classList.add("hidden");
     return;
-  } else {
-    document.querySelector("#bgcredit_overlay").classList.remove("hidden");
-  }
+  } 
+  else document.querySelector("#bgcredit_overlay").classList.remove("hidden");
+  
 
-  if (document.querySelector("#background>img")) {
-    return;
-  }
+  if (document.querySelector("#background>img")) return;
   else {
-
-    function getTimeBasedPrefix() {
-      const currentHour = new Date().getHours();
-      if (currentHour < 12) return "_morning";
-      if (currentHour >= 18) return "_night";
-      return "_day";
-    }
 
     const jsonFilePath = `../../services/unsplash_result${getTimeBasedPrefix()}.json`;
 
@@ -97,41 +113,57 @@ const setUnsplashBackground = async (isDisable) => {
         }
       }
 
-      // Fallback: Fetch a new image
-      let success = false;
-      let attempts = 0;
-      const maxAttempts = 5;
-      let selectedItem;
-      let imageBlob;
 
-      while (!success && attempts < maxAttempts) {
-        try {
-          selectedItem = jsonData[Math.floor(Math.random() * jsonData.length)];
-          if (!selectedItem.urls.regular) {
-            throw new Error("The selected item does not contain 'urls.regular'.");
-          }
-          imageBlob = await downloadImage(selectedItem.urls.regular);
-          success = true;
-        } catch (error) {
-          console.log(`Attempt ${attempts + 1} failed.`, error);
-          attempts++;
-        }
-      }
 
-      if (success && selectedItem) {
-        // Save only the newly fetched image
-        const timestamp = Date.now();
-        localStorage.setItem("selectedImages", JSON.stringify([{ timestamp, item: selectedItem }]));
-        appendImageToDOM(imageBlob, selectedItem);
-        console.log("New image fetched and saved to localStorage.");
-      } else {
-        console.log("Failed to fetch a new image after multiple attempts.");
-      }
+      fetchNew();
     } catch (error) {
       console.log("Error processing JSON or images:", error);
     }
+
   }
 };
+
+
+// Fallback: Fetch a new image
+async function fetchNew() {
+  let success = false;
+  let attempts = 0;
+  const maxAttempts = 5;
+  let selectedItem;
+  let imageBlob;
+
+  const jsonFilePath = `../../services/unsplash_result${getTimeBasedPrefix()}.json`;
+
+  const jsonData = await loadJSON(jsonFilePath);
+
+  if (!Array.isArray(jsonData) || jsonData.length === 0) {
+    throw new Error("JSON does not contain an array of records or it is empty.");
+  }
+
+  while (!success && attempts < maxAttempts) {
+    try {
+      selectedItem = jsonData[Math.floor(Math.random() * jsonData.length)];
+      if (!selectedItem.urls.regular) {
+        throw new Error("The selected item does not contain 'urls.regular'.");
+      }
+      imageBlob = await downloadImage(selectedItem.urls.regular);
+      success = true;
+    } catch (error) {
+      console.log(`Attempt ${attempts + 1} failed.`, error);
+      attempts++;
+    }
+  }
+
+  if (success && selectedItem) {
+    // Save only the newly fetched image
+    const timestamp = Date.now();
+    localStorage.setItem("selectedImages", JSON.stringify([{ timestamp, item: selectedItem }]));
+    appendImageToDOM(imageBlob, selectedItem);
+    console.log("New image fetched and saved to localStorage.");
+  } else {
+    console.log("Failed to fetch a new image after multiple attempts.");
+  }
+}
 
 
 export default setUnsplashBackground;
