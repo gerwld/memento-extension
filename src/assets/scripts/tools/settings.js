@@ -12,7 +12,7 @@
 //   - You should have received a copy of the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License
 //   - along with Memento Extension.  If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 
-
+import "../units/upload_background.js";
 
 // Change state, initialize state, onChange update DOM part
 (() => {
@@ -22,6 +22,7 @@
       const container = document.getElementById("l3_settings");
       const main_nav = document.getElementById("header_nav");
       const lang_set = document.getElementById("lang_set");
+      const images_conatiner = document.getElementById("local_images_container");
 
 
       // Listen for changes in chrome.storage.local
@@ -76,6 +77,7 @@
             for (let i = 0; i < inputs.length; i++) {
               const input = inputs[i];
               if(input.type === "range" && !isInitialCall) return;
+              if(input.type === "file") return;
               
               if (input.type === "checkbox") {
                 input.checked = state[input.name] || false;
@@ -83,6 +85,32 @@
                 input.value = state[input.name] || "";
               }
             }
+          }
+
+          function updateSelectedImages(e) {
+            const images_conatiner = document.getElementById("local_images_container");
+
+            (function initSelectedImages() {
+              const images = JSON.parse(localStorage.getItem("savedImages"));
+              if(Array.isArray(images) && images.length) {
+               let newInnerHTML =  images.map((img, i) => {
+                return `
+                <div value="${i}" data-selected="${state["background_local"] == i}">
+                  <button>X</button>
+                  <img src="${img}" alt="Image"/>
+                </div>`
+               })
+
+                images_conatiner.innerHTML = newInnerHTML.join(" ");
+
+              } 
+              else {
+                images_conatiner.innerHTML = '<input type="file" id="upload_input" accept="image/*">';
+                state["background_local"] = null;
+              }
+            })();
+
+
           }
 
           //Function to update lang state
@@ -130,7 +158,10 @@
           //Add event listener to header nav & lang change
           main_nav.addEventListener("click", updateMenuState);
           lang_set.addEventListener("change", updateLangState);
+          //Add event listener for images select
+          // images_conatiner.addEventListener("click", updateSelectedImages);
           // Initialize the form inputs based on the state
+          updateSelectedImages();
           updateFormInputs();
           updateMenu();
         });
@@ -178,7 +209,12 @@ btnSettings.addEventListener("click", toggleSettingsDrawer)
 
 // on click outside
 document.body.addEventListener('click', function(event) {
-  if (settingsBlock && !settingsBlock.contains(event.target) && event.target !== settingsBlock && event.target !== btnSettings) {
+  if (
+    settingsBlock 
+    && !settingsBlock.contains(event.target) 
+    && event.target.type !== "file"
+    && event.target !== settingsBlock 
+    && event.target !== btnSettings) {
     closeSettingsWithDelay(true);
   }
 });

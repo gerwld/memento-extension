@@ -12,10 +12,10 @@
 //   - You should have received a copy of the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License
 //   - along with Memento Extension.  If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 
+
+// MAIN PAGE INIT ONLY (index.html)
+
 import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
-
-
-
 
 (() => {
   "use strict";
@@ -23,7 +23,24 @@ import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
     const browser_cr = chrome ? chrome : browser;
     let interval0, interval1, interval2, interval3, interval4, interval5, interval6;
     const fonts = ["roboto", "poppins", "caprasimo", "playfair", "merriweather", "noto_sans", "nunito", "montserrat", "pixelify", "gabarito", "roboto_condensed", "inter"];
+    let isOptimize;
 
+    // * Disables blur, background, filter when current page is not visible.
+    function optimizeResources() {
+      document.addEventListener("DOMContentLoaded", () => {
+        const background = document.getElementById("background_overlay");
+        if (!isOptimize) {
+          document.addEventListener('visibilitychange', function () {
+            isOptimize = true;
+            if (document.hidden) {
+              background.classList.add("no_tab_activity");
+            } else {
+              background.classList.remove("no_tab_activity");
+            }
+          });
+        }
+      });
+    } optimizeResources();
 
     const displayTime = ({ hideTime, showSeconds, is12HourFormat }) => {
       clearInterval(interval0)
@@ -177,16 +194,42 @@ import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
     function setBackground(selectedType, selectedValue) {
       // TODO: Better background set
 
-      if(selectedType === "unsplash") setUnsplashBackground();
-      else setUnsplashBackground(true);
+      // SELECTED: UNSPLASH
+      if (selectedType === "unsplash") {
+        document.getElementById('bg_reload').classList.remove("hidden");
+        setUnsplashBackground();
+      } else {
+        document.getElementById('bg_reload').classList.add("hidden");
+        setUnsplashBackground(true);
+      }
 
-      if(selectedType === "disabled") {
+      // SELECTED: DISABLED
+      if (selectedType === "disabled") {
         document.getElementById('hide_no-bg').classList.add("hidden")
         document.getElementById('background_overlay').classList.add("hidden")
       } else {
         document.getElementById('hide_no-bg').classList.remove("hidden")
         document.getElementById('background_overlay').classList.remove("hidden")
       }
+
+      // SELECTED: LOCAL
+      if (selectedType === "local") {
+        function setSavedImage() {
+          const savedImage = localStorage.getItem("savedImage");
+          if (savedImage) {
+            const backgroundBlock = document.getElementById("background");
+            if (backgroundBlock) {
+              const image = backgroundBlock?.querySelector("img");
+              if (image) image.remove;
+
+              const img = document.createElement('img');
+              img.src = savedImage;
+              backgroundBlock.appendChild(img);
+            }
+          }
+        }
+        setSavedImage();}
+
     }
 
 
@@ -255,3 +298,5 @@ import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
     document.addEventListener("DOMContentLoaded", getCurrentState, false);
   })();
 })(this);
+
+
