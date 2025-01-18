@@ -11,7 +11,7 @@ A minimalist, customizable start page extension for your browser. Open-source, l
 ---
 
 <p align="center">
-<a rel="noreferrer noopener" href="#"><img alt="Chrome Web Store" src="https://img.shields.io/badge/Chrome-141e24.svg?&style=for-the-badge&logo=google-chrome&logoColor=white"></a>
+<a rel="noreferrer noopener" href="https://chromewebstore.google.com/detail/feiooleecmhaceomemdjchnkahocjgjg"><img alt="Chrome Web Store" src="https://img.shields.io/badge/Chrome-141e24.svg?&style=for-the-badge&logo=google-chrome&logoColor=white"></a>
 <a rel="noreferrer noopener" href="#"><img alt="Firefox Add-ons" src="https://img.shields.io/badge/Firefox-141e24.svg?&style=for-the-badge&logo=firefox-browser&logoColor=white"></a>
 <a rel="noreferrer noopener" href="#"><img alt="Edge Addons" src="https://img.shields.io/badge/Edge-141e24.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white"></a>
 <a href="#soon" title="Coming Soon" rel="noreferrer noopener"><img height="28" alt="Safari Add-ons" src="https://img.shields.io/badge/Safari-141e24.svg?&style=for-the-badge&logo=safari&logoColor=white"></a>
