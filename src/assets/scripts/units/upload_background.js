@@ -1,44 +1,47 @@
+import { saveImageToIndexedDB, getAllImagesFromIndexedDB } from "../tools/IndexDB.js";
 
+// Main upload initialization function
 function uploadBackgroundInitialize(callback) {
   const uploadInput = document.getElementById("upload_input");
 
-  // On uploadInput change listener
-  uploadInput.addEventListener("change", (event) => {
+  uploadInput.addEventListener("change", async (event) => {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
 
-      // Reading the file as Data URL (onload event)
-      reader.onload = (e) => {
-
+      reader.onload = async (e) => {
         const imageData = e.target.result;
 
-        // Local state saving with Set
-        let state = [];
-        const localStateBG = JSON.parse(localStorage.getItem("savedImages"));
+        // Save image to IndexedDB
+        const imageId = await saveImageToIndexedDB(imageData);
 
-        if (Array.isArray(localStateBG)) {
-          state = [...localStateBG];
-        }
-        state.push(imageData);
+        // Retrieve all images from IndexedDB to update the state
+        const allImages = await getAllImagesFromIndexedDB();
 
-        let uniqueStateArray = [...new Set(state)];
-        localStorage.setItem("savedImages", JSON.stringify(uniqueStateArray));
+        // Find the index of the current image
+        const currentIndex = allImages.findIndex((image) => image.id === imageId);
 
-          // updating index with currentIndex
-          let currentIndex = uniqueStateArray.indexOf(imageData);
-          chrome.storage.local.get("formState", (result) => {
-            let state = result.formState ? result.formState : {};
-            chrome.storage.local.set({ formState: {...state, "background_local": currentIndex || 0, "force_update": Math.random() + Math.random()} }, () => {
+        // Update form state in chrome.storage.local
+        chrome.storage.local.get("formState", (result) => {
+          const state = result.formState || {};
+          chrome.storage.local.set(
+            {
+              formState: {
+                ...state,
+                background_local: currentIndex,
+                force_update: Math.random() + Math.random(),
+              },
+            },
+            () => {
               const formStateChangeEvent = new CustomEvent("formStateChange");
               window.dispatchEvent(formStateChangeEvent);
-              
-            });
-          });
+            }
+          );
+        });
 
-        // Updating DOM part
+        // Update the DOM or perform other actions
         callback();
-        console.log(JSON.parse(localStorage.getItem("savedImages")));
+        console.log("All Images:", allImages);
       };
 
       reader.readAsDataURL(file);

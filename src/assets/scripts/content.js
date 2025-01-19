@@ -15,6 +15,7 @@
 
 // MAIN PAGE INIT ONLY (index.html)
 
+import { getAllImagesFromIndexedDB, initializeIndexedDB } from "./tools/IndexDB.js";
 import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
 
 (() => {
@@ -191,7 +192,7 @@ import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
       }
     }
 
-    function removeAllImagesBackground () {
+    function removeAllImagesBackground() {
       const backgroundBlock = document.getElementById("background");
       const imagesBG = backgroundBlock?.querySelectorAll("img");
       imagesBG.forEach(i => i.remove());
@@ -229,38 +230,42 @@ import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
       // SELECTED: LOCAL
       if (selectedType === "local") {
         document.querySelector('.background_group_local').classList.remove("hidden");
-        function setSavedImage() {
+
+        async function setSavedImage() {
           console.log("setSavedImage call");
-          
-          const savedImages = JSON.parse(localStorage.getItem("savedImages"));
+
+          // Retrieve all images from IndexedDB
+          const savedImages = await getAllImagesFromIndexedDB();
           const backgroundBlock = document.getElementById("background");
-          
-          if (Array.isArray(savedImages)) {
-            
+
+          if (Array.isArray(savedImages) && savedImages.length > 0) {
             if (backgroundBlock) {
-              const currentImage = savedImages[selectedIndexLocalStorage * 1];
-              
+              // Get the selected image based on the selected index
+              const currentImage = savedImages[selectedIndexLocalStorage * 1]?.data;
+
+              // Remove existing images in the background block
               const imagesBG = backgroundBlock?.querySelectorAll("img");
-              imagesBG.forEach(i => i.remove());
+              imagesBG.forEach((i) => i.remove());
 
-              console.log("setting background (savedImages)");
+              console.log("setting background (IndexedDB images)");
 
-              if(typeof currentImage === "string") {
-                const img = document.createElement('img');
+              if (typeof currentImage === "string") {
+                const img = document.createElement("img");
                 img.src = currentImage;
                 backgroundBlock.appendChild(img);
               }
             }
-          } 
-          if (!savedImages.length) {
-            removeAllImagesBackground()
+          } else {
+            // If no images are available, remove all backgrounds
+            removeAllImagesBackground();
           }
         }
+
         setSavedImage();
-      }
-      else {
+      } else {
         document.querySelector('.background_group_local').classList.add("hidden");
       }
+
 
     }
 
@@ -293,7 +298,7 @@ import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
     function getCurrentState(oldState) {
       browser_cr.storage.local.get("formState", async (result) => {
         console.log("content.js getCurrentState call");
-        
+
 
         // Checks if extension is disabled or not
         const state = result.formState.disabled ? { disabled: true } : result.formState;
@@ -314,7 +319,7 @@ import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
 
     browser_cr.storage.local.onChanged.addListener((changes, namespace) => {
       console.log("changed dispatch");
-      
+
     });
 
 
