@@ -191,7 +191,7 @@ import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
       }
     }
 
-    function setBackground(selectedType, selectedValue) {
+    function setBackground(selectedType, selectedIndexLocalStorage) {
       // TODO: Better background set
 
       // SELECTED: UNSPLASH
@@ -215,16 +215,23 @@ import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
       // SELECTED: LOCAL
       if (selectedType === "local") {
         function setSavedImage() {
-          const savedImage = localStorage.getItem("savedImage");
-          if (savedImage) {
+          const savedImages = JSON.parse(localStorage.getItem("savedImages"));
+          
+          if (Array.isArray(savedImages) && savedImages.length ) {
             const backgroundBlock = document.getElementById("background");
             if (backgroundBlock) {
-              const image = backgroundBlock?.querySelector("img");
-              if (image) image.remove;
+              const currentImage = savedImages[selectedIndexLocalStorage * 1];
+              
+              const imagesBG = backgroundBlock?.querySelectorAll("img");
+              imagesBG.forEach(i => i.remove());
 
-              const img = document.createElement('img');
-              img.src = savedImage;
-              backgroundBlock.appendChild(img);
+              console.log("Set new background (local)");
+
+              if(typeof currentImage === "string") {
+                const img = document.createElement('img');
+                img.src = currentImage;
+                backgroundBlock.appendChild(img);
+              }
             }
           }
         }
@@ -260,6 +267,8 @@ import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
     // Part to get current state
     function getCurrentState(oldState) {
       browser_cr.storage.local.get("formState", async (result) => {
+        console.log("content.js getCurrentState call");
+        
 
         // Checks if extension is disabled or not
         const state = result.formState.disabled ? { disabled: true } : result.formState;
@@ -273,7 +282,7 @@ import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
         // Chunks that change interface based on state
         displayDayAndDate({ showFullDayName: true, hideDate: state.date__hide_date })
         displayTime({ hideTime: state.time__hide_time, showSeconds: state.time__show_seconds, is12HourFormat: state.time__is_12_hours });
-        setBackground(state.background_type)
+        setBackground(state.background_type, state.background_local)
       });
     }
 

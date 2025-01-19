@@ -12,7 +12,7 @@
 //   - You should have received a copy of the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License
 //   - along with Memento Extension.  If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 
-import "../units/upload_background.js";
+import uploadBackgroundInitialize from "../units/upload_background.js";
 
 // Change state, initialize state, onChange update DOM part
 (() => {
@@ -53,6 +53,9 @@ import "../units/upload_background.js";
         chrome.storage.local.get("formState", (result) => {
           let state = result.formState ? result.formState : {};
 
+          console.log(state);
+
+
           if (!result.formState) {
             chrome.storage.local.set({ formState: state }, () => {
               dispatchFormStateChangeEvent();
@@ -76,9 +79,9 @@ import "../units/upload_background.js";
             const inputs = document.querySelectorAll("input, select");
             for (let i = 0; i < inputs.length; i++) {
               const input = inputs[i];
-              if(input.type === "range" && !isInitialCall) return;
-              if(input.type === "file") return;
-              
+              if (input.type === "range" && !isInitialCall) return;
+              if (input.type === "file") return;
+
               if (input.type === "checkbox") {
                 input.checked = state[input.name] || false;
               } else {
@@ -88,25 +91,28 @@ import "../units/upload_background.js";
           }
 
           function updateSelectedImages() {
-            
+
             const images_conatiner = document.getElementById("local_images_container");
 
             (function initSelectedImages() {
               const images = JSON.parse(localStorage.getItem("savedImages"));
-              if(Array.isArray(images) && images.length) {
-               let newInnerHTML =  images.map((img, i) => {          
-                return `
-                <div data-value="${i}" data-selected="${state["background_local"] == i}">
-                  <button>X</button>
+              if (Array.isArray(images) && images.length) {
+                let newInnerHTML = images.map((img, i) => {
+                  return `
+                <div data-value="${i}" data-action="select" data-selected="${state["background_local"] == i}">
+                  <button data-value="${i}" data-action="delete">X</button>
                   <img src="${img}" alt="Image"/>
                 </div>`
-               })
+                })
 
-                images_conatiner.innerHTML = newInnerHTML.join(" ");
+                let str = newInnerHTML.join(" ");
+                if (images_conatiner.innerHTML != str) {
+                  images_conatiner.innerHTML = str;
+                }
 
-              } 
+              }
               else {
-                images_conatiner.innerHTML = '<input type="file" id="upload_input" accept="image/*">';
+                images_conatiner.innerHTML = '';
                 state["background_local"] = null;
               }
             })();
@@ -114,13 +120,59 @@ import "../units/upload_background.js";
           }
 
           function setSelectedImages(e) {
-            const value = e.target?.getAttribute('data-value');
+            console.log("call");
 
-            if(!isNaN(value) && value >= 0 && value !== null) {
-              state["background_local"] = value;
-              console.log("Set image, index from LS: " + value);
-              updateSelectedImages();
+            const value = e.target?.getAttribute('data-value');
+            const action = e.target?.getAttribute('data-action');
+
+            if (action === "select") onSelect();
+            if (action === "delete") onDelete();
+
+            function onSelect() {
+              if (!isNaN(value)
+                && value >= 0
+                && value !== null
+                && state["background_local"] != value) {
+                state["background_local"] = value;
+                console.log("Set image, index from LS: " + value);
+
+                // Save the updated state to extension storage
+                chrome.storage.local.set({ formState: state }, () => {
+                  dispatchFormStateChangeEvent();
+                });
+              }
             }
+
+            function onDelete() {
+
+              if (!isNaN(value)
+                && value >= 0
+                && value !== null) {
+                let stateBG = [];
+                const localStateBG = JSON.parse(localStorage.getItem("savedImages"));
+
+                if (Array.isArray(localStateBG)) {
+                  stateBG = [...localStateBG];
+                }
+
+                stateBG.splice(value, 1);
+                localStorage.setItem("savedImages", JSON.stringify(stateBG));
+
+                setTimeout(() => {
+                  // Save the updated state if deleted current
+                  if (value == state["background_local"]) {
+                    chrome.storage.local.set({ formState: { ...state, "background_local": 0 } }, () => {
+                      dispatchFormStateChangeEvent();
+                    });
+                  } else {
+                    updateSelectedImages();
+                  }
+                }, 400)
+
+                console.log("Deleted image: " + value);
+              }
+            }
+
           }
 
           //Function to update lang state
@@ -130,7 +182,7 @@ import "../units/upload_background.js";
             // Save the updated state to extension storage
             chrome.storage.local.set({ formState: state }, () => {
               console.log(state, e.target.value);
-              
+
               dispatchFormStateChangeEvent();
             });
           }
@@ -162,16 +214,29 @@ import "../units/upload_background.js";
           inputs.forEach((input) => {
             if (input.type === "checkbox") {
               input.addEventListener("change", updateState);
-            } else input.addEventListener("input", updateState);
+            } else if (input.type !== "file") input.addEventListener("input", updateState);
           });
 
-          //Add event listener to header nav & lang change
-          main_nav.addEventListener("click", updateMenuState);
-          lang_set.addEventListener("change", updateLangState);
-          //Add event listener for images select
-          images_conatiner.addEventListener("click", setSelectedImages);
+
+          if (isInitialCall) {
+            //Add event listener to header nav & lang change
+            main_nav.removeEventListener("click", updateMenuState);
+            main_nav.addEventListener("click", updateMenuState);
+
+            lang_set.removeEventListener("change", updateLangState);
+            lang_set.addEventListener("change", updateLangState);
+
+            //Add event listener for images select
+            images_conatiner.removeEventListener("click", setSelectedImages);
+            images_conatiner.addEventListener("click", setSelectedImages);
+
+            uploadBackgroundInitialize(updateSelectedImages);
+          }
+
+
           // Initialize the form inputs based on the state
           updateSelectedImages();
+
           updateFormInputs();
           updateMenu();
         });
@@ -185,49 +250,49 @@ import "../units/upload_background.js";
 
 // Toggle aside settings menu part 
 (() => {
-const btnSettings = document.getElementById("btnsettings");
-const settingsBlock = document.getElementById("settingsdrawer");
-const DELAY_DISPLAY_NONE = 400;
+  const btnSettings = document.getElementById("btnsettings");
+  const settingsBlock = document.getElementById("settingsdrawer");
+  const DELAY_DISPLAY_NONE = 400;
 
-function toggleSettingsDrawer() {
-  if(document.body.classList.contains("settings-opened")) 
-    closeSettingsWithDelay();
-  else {
-    // settingsBlock.classList.remove("displayNone");
-    setTimeout(() => {
-      document.body.classList.add("settings-opened");
-    }, 50);
-    // to prevent the issue where button was toggled multiple times & block do not appear
-    setTimeout(() => {
+  function toggleSettingsDrawer() {
+    if (document.body.classList.contains("settings-opened"))
+      closeSettingsWithDelay();
+    else {
       // settingsBlock.classList.remove("displayNone");
-    }, DELAY_DISPLAY_NONE + 50)
+      setTimeout(() => {
+        document.body.classList.add("settings-opened");
+      }, 50);
+      // to prevent the issue where button was toggled multiple times & block do not appear
+      setTimeout(() => {
+        // settingsBlock.classList.remove("displayNone");
+      }, DELAY_DISPLAY_NONE + 50)
+    }
   }
-}
 
-function closeSettingsWithDelay(isClickOutside) {
-  if(!isClickOutside) {
-    // settingsBlock.classList.remove("displayNone");
+  function closeSettingsWithDelay(isClickOutside) {
+    if (!isClickOutside) {
+      // settingsBlock.classList.remove("displayNone");
+    }
+    document.body.classList.remove("settings-opened");
+
+    setTimeout(() => {
+      // settingsBlock.classList.add("displayNone");
+    }, DELAY_DISPLAY_NONE);
   }
-  document.body.classList.remove("settings-opened");
 
-  setTimeout(() => {
-    // settingsBlock.classList.add("displayNone");
-  }, DELAY_DISPLAY_NONE);
-}
+  btnSettings.addEventListener("click", toggleSettingsDrawer)
 
-btnSettings.addEventListener("click", toggleSettingsDrawer)
+  // on click outside
+  document.body.addEventListener('click', function (event) {
 
-// on click outside
-document.body.addEventListener('click', function(event) {
-  
-  if (
-    event.target !== settingsBlock
-    && !settingsBlock.contains(event.target) 
-    && event.target.type !== "file"
-    && !event.target?.getAttribute('data-value')
-    && event.target !== settingsBlock 
-    && event.target !== btnSettings) {
-    closeSettingsWithDelay(true);
-  }
-});
+    if (
+      event.target !== settingsBlock
+      && !settingsBlock.contains(event.target)
+      && event.target.type !== "file"
+      && !event.target?.getAttribute('data-value')
+      && event.target !== settingsBlock
+      && event.target !== btnSettings) {
+      closeSettingsWithDelay(true);
+    }
+  });
 })();

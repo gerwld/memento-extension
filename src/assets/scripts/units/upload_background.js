@@ -1,37 +1,38 @@
-document.addEventListener("DOMContentLoaded", () => {
+
+function uploadBackgroundInitialize(callback) {
   const uploadInput = document.getElementById("upload_input");
 
-  // При загрузке файла
+  // On uploadInput change listener
   uploadInput.addEventListener("change", (event) => {
-      const file = event.target.files[0];
-      if (file) {
-          const reader = new FileReader();
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
 
-          // Чтение файла как Data URL
-          reader.onload = (e) => {
+      // Reading the file as Data URL (onload event)
+      reader.onload = (e) => {
 
-              const imageData = e.target.result;
-              
-              // Сохранение в локальное хранилище
-              let state = [];
-              const localStateBG = JSON.parse(localStorage.getItem("savedImages"));
+        const imageData = e.target.result;
 
-              if(Array.isArray(localStateBG)) {
-                state = [...localStateBG];
-              }
+        // Local state saving with Set
+        let state = [];
+        const localStateBG = JSON.parse(localStorage.getItem("savedImages"));
 
-              state.push(imageData);
+        if (Array.isArray(localStateBG)) {
+          state = [...localStateBG];
+        }
+        state.push(imageData);
 
-              
-              
-              let uniqueStateArray = [...new Set(state)];              
-              localStorage.setItem("savedImages", JSON.stringify(uniqueStateArray));
+        let uniqueStateArray = [...new Set(state)];
+        localStorage.setItem("savedImages", JSON.stringify(uniqueStateArray));
 
-              console.log(JSON.parse(localStorage.getItem("savedImages")));
-          };
+        // Updating DOM part
+        callback();
+        console.log(JSON.parse(localStorage.getItem("savedImages")));
+      };
 
-          reader.readAsDataURL(file);
-      }
+      reader.readAsDataURL(file);
+    }
   });
+}
 
-});
+export default uploadBackgroundInitialize;

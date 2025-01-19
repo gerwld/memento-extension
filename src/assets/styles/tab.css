@@ -79,6 +79,10 @@ body {
 
 body.settings-opened #btnsettings {
   transform: rotate(45deg);
+  background-color: #1e2125;
+}
+
+body.settings-opened #btnsettings svg {
   opacity: 0.5;
 }
 

@@ -84,7 +84,7 @@ const setUnsplashBackground = async (isDisable) => {
   else document.querySelector("#bgcredit_overlay").classList.remove("hidden");
   
 
-  if (document.querySelector("#background>img")) return;
+  if (false && document.querySelector("#background>img")) return;
   else {
 
     const jsonFilePath = `../../services/unsplash_result${getTimeBasedPrefix()}.json`;
