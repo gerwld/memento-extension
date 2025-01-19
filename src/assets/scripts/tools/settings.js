@@ -87,15 +87,16 @@ import "../units/upload_background.js";
             }
           }
 
-          function updateSelectedImages(e) {
+          function updateSelectedImages() {
+            
             const images_conatiner = document.getElementById("local_images_container");
 
             (function initSelectedImages() {
               const images = JSON.parse(localStorage.getItem("savedImages"));
               if(Array.isArray(images) && images.length) {
-               let newInnerHTML =  images.map((img, i) => {
+               let newInnerHTML =  images.map((img, i) => {          
                 return `
-                <div value="${i}" data-selected="${state["background_local"] == i}">
+                <div data-value="${i}" data-selected="${state["background_local"] == i}">
                   <button>X</button>
                   <img src="${img}" alt="Image"/>
                 </div>`
@@ -110,7 +111,16 @@ import "../units/upload_background.js";
               }
             })();
 
+          }
 
+          function setSelectedImages(e) {
+            const value = e.target?.getAttribute('data-value');
+
+            if(!isNaN(value) && value >= 0 && value !== null) {
+              state["background_local"] = value;
+              console.log("Set image, index from LS: " + value);
+              updateSelectedImages();
+            }
           }
 
           //Function to update lang state
@@ -159,7 +169,7 @@ import "../units/upload_background.js";
           main_nav.addEventListener("click", updateMenuState);
           lang_set.addEventListener("change", updateLangState);
           //Add event listener for images select
-          // images_conatiner.addEventListener("click", updateSelectedImages);
+          images_conatiner.addEventListener("click", setSelectedImages);
           // Initialize the form inputs based on the state
           updateSelectedImages();
           updateFormInputs();
@@ -209,10 +219,12 @@ btnSettings.addEventListener("click", toggleSettingsDrawer)
 
 // on click outside
 document.body.addEventListener('click', function(event) {
+  
   if (
-    settingsBlock 
+    event.target !== settingsBlock
     && !settingsBlock.contains(event.target) 
     && event.target.type !== "file"
+    && !event.target?.getAttribute('data-value')
     && event.target !== settingsBlock 
     && event.target !== btnSettings) {
     closeSettingsWithDelay(true);

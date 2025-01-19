@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const uploadInput = document.getElementById("local_images_container");
+  const uploadInput = document.getElementById("upload_input");
 
   // При загрузке файла
   uploadInput.addEventListener("change", (event) => {
