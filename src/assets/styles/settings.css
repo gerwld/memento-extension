@@ -57,7 +57,7 @@
   /* overflow-y: scroll; */
   opacity: 0;
   pointer-events: none;
-  transition: right 400ms ease, opacity 200ms linear;
+  transition: right 300ms ease, opacity 100ms linear;
 
   border-top-left-radius: 26px;
   border-bottom-left-radius: 26px;
@@ -83,7 +83,7 @@ body.settings-opened .settings-drawer {
 }
 
 .page-content {
-  transition: transform 600ms ease;
+  transition: transform 900ms ease;
 }
 
 body.settings-opened .page-content {

@@ -111,14 +111,15 @@ html body #btnsettings:hover {
   justify-content: center;
   align-items: center;
   min-height: 400px;
-  height: 80vh;
-  height: calc(80vh - 70px);
+  height: 72vh;
+  height: calc(72vh - 70px);
   width: 100vw;
   padding: 1em;
 }
 
 #time-element {
   display: flex;
+  align-items: center;
   margin: 0.05em;
   font-size: 4rem;
   font-weight: 300;
@@ -138,6 +139,10 @@ html body #btnsettings:hover {
 #time-element .seconds {
   min-width: 1.42em;
   margin-right: -0.32em;
+  font-size: 0.8em;
+  line-height: inherit;
+  margin-bottom: -0.1em;
+  color: #6d7176;
 }
 
 #time-element .seconds.hidden {
@@ -186,4 +191,26 @@ bottom: 4.2vmin;
 
 #bgcredit_overlay a:hover {
   opacity: 0.8;
+}
+
+
+
+/* rateme anim */
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  20% {
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+#ext_show>div {
+  animation: appear 1000ms ease;
 }
