@@ -24,6 +24,8 @@ import uploadBackgroundInitialize from "../units/upload_background.js";
       const lang_set = document.getElementById("lang_set");
       const images_conatiner = document.getElementById("local_images_container");
 
+      if (!chrome)
+        chrome = browser;
 
       // Listen for changes in chrome.storage.local
       let prevstate;
@@ -52,8 +54,6 @@ import uploadBackgroundInitialize from "../units/upload_background.js";
         // Retrieve state from extension storage or use the initial state
         chrome.storage.local.get("formState", (result) => {
           let state = result.formState ? result.formState : {};
-
-          console.log(state);
 
 
           if (!result.formState) {

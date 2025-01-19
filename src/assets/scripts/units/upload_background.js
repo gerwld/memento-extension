@@ -25,6 +25,9 @@ function uploadBackgroundInitialize(callback) {
         let uniqueStateArray = [...new Set(state)];
         localStorage.setItem("savedImages", JSON.stringify(uniqueStateArray));
 
+        if (!chrome)
+          chrome = browser;
+        
           // updating index with currentIndex
           let currentIndex = uniqueStateArray.indexOf(imageData);
           chrome.storage.local.get("formState", (result) => {
