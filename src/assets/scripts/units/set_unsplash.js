@@ -61,7 +61,9 @@ const appendImageToDOM = (imageBlob, selectedItem) => {
 document.addEventListener("DOMContentLoaded", () => {
   const reloadBTN = document.querySelector(".bg_reloadbtn");
   reloadBTN.addEventListener("click", () => {
-    console.log("fetch");
+    console.log("fetch new");
+    reloadBTN.classList.add('animation_load');
+    setInterval(() => reloadBTN.classList.remove('animation_load'), 1000);
     fetchNew();
   });
 });
@@ -76,7 +78,7 @@ function getTimeBasedPrefix() {
 
 
 // Main logic
-const setUnsplashBackground = async (isDisable) => {
+const setUnsplashBackground = async (isDisable, isReload) => {
   if (isDisable) {
     document.querySelector("#bgcredit_overlay").classList.add("hidden");
     return;
@@ -84,7 +86,7 @@ const setUnsplashBackground = async (isDisable) => {
   else document.querySelector("#bgcredit_overlay").classList.remove("hidden");
   
 
-  if (false && document.querySelector("#background>img")) return;
+  if (!isReload && document.querySelector("#background>img")) return;
   else {
 
     const jsonFilePath = `../../services/unsplash_result${getTimeBasedPrefix()}.json`;
@@ -103,8 +105,11 @@ const setUnsplashBackground = async (isDisable) => {
       // Check if the last saved image is still valid
       if (lastEntry && (Date.now() - lastEntry.timestamp) < fourHours) {
         try {
+          console.log("fetch new set_unsplash");
           // Use the saved image
           const imageBlob = await downloadImage(lastEntry.item.urls.regular);
+          console.log(imageBlob);
+          
           appendImageToDOM(imageBlob, lastEntry.item);
           console.log("Using saved image from localStorage.");
           return;

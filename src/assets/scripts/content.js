@@ -191,6 +191,12 @@ import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
       }
     }
 
+    function removeAllImagesBackground () {
+      const backgroundBlock = document.getElementById("background");
+      const imagesBG = backgroundBlock?.querySelectorAll("img");
+      imagesBG.forEach(i => i.remove());
+    }
+
     function setBackground(selectedType, selectedIndexLocalStorage) {
       // TODO: Better background set
 
@@ -212,20 +218,32 @@ import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
         document.getElementById('background_overlay').classList.remove("hidden")
       }
 
+      // SELECTED: LINK
+      if (selectedType === "link") {
+        // removeAllImagesBackground();
+        document.querySelector('.background_group_link').classList.remove("hidden");
+      } else {
+        document.querySelector('.background_group_link').classList.add("hidden");
+      }
+
       // SELECTED: LOCAL
       if (selectedType === "local") {
+        document.querySelector('.background_group_local').classList.remove("hidden");
         function setSavedImage() {
-          const savedImages = JSON.parse(localStorage.getItem("savedImages"));
+          console.log("setSavedImage call");
           
-          if (Array.isArray(savedImages) && savedImages.length ) {
-            const backgroundBlock = document.getElementById("background");
+          const savedImages = JSON.parse(localStorage.getItem("savedImages"));
+          const backgroundBlock = document.getElementById("background");
+          
+          if (Array.isArray(savedImages)) {
+            
             if (backgroundBlock) {
               const currentImage = savedImages[selectedIndexLocalStorage * 1];
               
               const imagesBG = backgroundBlock?.querySelectorAll("img");
               imagesBG.forEach(i => i.remove());
 
-              console.log("Set new background (local)");
+              console.log("setting background (savedImages)");
 
               if(typeof currentImage === "string") {
                 const img = document.createElement('img');
@@ -233,9 +251,16 @@ import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
                 backgroundBlock.appendChild(img);
               }
             }
+          } 
+          if (!savedImages.length) {
+            removeAllImagesBackground()
           }
         }
-        setSavedImage();}
+        setSavedImage();
+      }
+      else {
+        document.querySelector('.background_group_local').classList.add("hidden");
+      }
 
     }
 
@@ -287,6 +312,10 @@ import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
     }
 
 
+    browser_cr.storage.local.onChanged.addListener((changes, namespace) => {
+      console.log("changed dispatch");
+      
+    });
 
 
     // Part to listen the state changes

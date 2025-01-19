@@ -113,7 +113,7 @@
         <section class="group">
           <span class="sect_lable" data-i18n="menu_bg">Background: </span>
 
-          <label class="ch_lp ch_lp__background">
+          <div class="ch_lp ch_lp__background">
             <span class="label" data-i18n="menu_bgtype">Background type:</span>
             <div class="bgtype_content">
               <button type="button" class="bg_reloadbtn" id="bg_reload" title="Refresh Background">
@@ -129,10 +129,10 @@
                 <option value="disabled">Disabled</option>
               </select>
             </div>
-          </label>
+          </div>
 
 
-          <div class="background_group">
+          <div class="background_group_local">
             <div class="ch_slp">
 
               <span data-i18n="mi_7">Local Image (File)</span>
@@ -158,10 +158,12 @@
             </div>
           </div>
 
-          <label class="ch_slp">
+          <div class="background_group_link">
+          <label class="ch_slp ch_tlp">
             <span data-i18n="mi_8">Link Image (URL)</span>
-            <input type="text" placeholder="https://**.jpg" id="upload">
+            <input type="text" name="background_link" placeholder="https://**.jpg | *.png | *.gif" id="upload">
           </label>
+        </div>
 
           <div id="hide_no-bg">
             <label class="ch_slp">

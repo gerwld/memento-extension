@@ -32,7 +32,8 @@ const initialState = {
   background_brightness: 0.22,
   font: "caprasimo",
   timestamp: Date.now(),
-  background_local: null // index of selected image in localStorage.getItem("savedImages")
+  background_local: undefined, // index of selected image in localStorage.getItem("savedImages")
+  background_link: undefined // link of selected image
 };
 
 const browser_cr = chrome ? chrome : browser;
