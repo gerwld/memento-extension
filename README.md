@@ -12,8 +12,10 @@ A minimalist, customizable start page extension for your browser. Open-source, l
 
 <p align="center">
 <a rel="noreferrer noopener" href="https://chromewebstore.google.com/detail/feiooleecmhaceomemdjchnkahocjgjg"><img alt="Chrome Web Store" src="https://img.shields.io/badge/Chrome-141e24.svg?&style=for-the-badge&logo=google-chrome&logoColor=white"></a>
-<a rel="noreferrer noopener" href="#"><img alt="Firefox Add-ons" src="https://img.shields.io/badge/Firefox-141e24.svg?&style=for-the-badge&logo=firefox-browser&logoColor=white"></a>
-<a rel="noreferrer noopener" href="#"><img alt="Edge Addons" src="https://img.shields.io/badge/Edge-141e24.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white"></a>
+<a rel="noreferrer noopener" href="https://addons.mozilla.org/en-US/firefox/addon/memento-extension/"><img alt="Firefox Add-ons" src="https://img.shields.io/badge/Firefox-141e24.svg?&style=for-the-badge&logo=firefox-browser&logoColor=white"></a>
+<a rel="noreferrer noopener" href="https://chromewebstore.google.com/detail/feiooleecmhaceomemdjchnkahocjgjg"><img alt="Opera / Opera GX Browser" src="https://img.shields.io/badge/Opera-141e24.svg?&style=for-the-badge&logo=opera&logoColor=white"></a>
+<a rel="noreferrer noopener" href="https://chromewebstore.google.com/detail/feiooleecmhaceomemdjchnkahocjgjg"><img alt="Brave Browser" src="https://img.shields.io/badge/Brave-141e24.svg?&style=for-the-badge&logo=brave&logoColor=white"></a>  
+<a rel="noreferrer noopener" href="https://microsoftedge.microsoft.com/addons/detail/memento-minimalistic-h/fdegnimhficgecognlajckgemcifnocf"><img alt="Edge Addons" src="https://img.shields.io/badge/Edge-141e24.svg?&style=for-the-badge&logo=e&logoColor=white"></a>
 <a href="#soon" title="Coming Soon" rel="noreferrer noopener"><img height="28" alt="Safari Add-ons" src="https://img.shields.io/badge/Safari-141e24.svg?&style=for-the-badge&logo=safari&logoColor=white"></a>
 </p>
 
@@ -46,9 +48,10 @@ A minimalist, customizable start page extension for your browser. Open-source, l
 
 Install Memento directly from your browser's extension store:
 
-- [**Chrome Web Store**](https://chrome.google.com/webstore/detail/memento-remove-instagram-s/dbbopjndlaginbghfoibbndhlbpdpapd)  
-- [**Firefox Add-ons**](https://addons.mozilla.org/en-US/firefox/addon/memento-extension/)  
-- [**Microsoft Edge Add-ons**](https://microsoftedge.microsoft.com/addons/detail/memento-remove-instagram/gcjgjfjabmgpainpahloaldflhfnppai)
+- [**Chrome Web Store**](https://chromewebstore.google.com/detail/feiooleecmhaceomemdjchnkahocjgjg)  
+- [**Firefox Add-ons**](https://addons.mozilla.org/en-US/firefox/addon/memento-extension/)
+- [**Brave / Opera**](https://chromewebstore.google.com/detail/feiooleecmhaceomemdjchnkahocjgjg)
+- [**Microsoft Edge Add-ons**](https://microsoftedge.microsoft.com/addons/detail/memento-minimalistic-h/fdegnimhficgecognlajckgemcifnocf)
 
 For manual installation, download the latest release from the [Releases](https://github.com/gerwld/memento-extension/releases) page and follow the provided setup instructions.
 
