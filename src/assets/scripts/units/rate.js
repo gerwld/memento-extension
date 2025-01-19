@@ -3,9 +3,9 @@
 (() => {
   "use strict";
   (() => {
-    const APPEAR_TIMEOUT = 10 * 1000 * 60;
-    // const APPEAR_TIMEOUT = 2000;
-    const MAX_CLOSE_COUNT = 5;
+    // const APPEAR_TIMEOUT = 10 * 1000 * 60;
+    const APPEAR_TIMEOUT = 2000;
+    const MAX_CLOSE_COUNT = 4;
     const browser_cr = chrome ? chrome : browser;
     const STORE_LINKS = {
       "chrome": "https://chromewebstore.google.com/detail/memento-minimalistic-home/feiooleecmhaceomemdjchnkahocjgjg",
@@ -25,10 +25,26 @@
       return "chrome";
     }
 
-    const initRateMePopup = () => {
+    const initRateMePopup = async () => {
       const browser = detectBrowser();
 
-      if (browser && STORE_LINKS[browser]) {
+      const isThreeDaysLeftFromInstall = async () => {
+        const FOUR_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000; // 3 days in milliseconds
+        const result = await new Promise((resolve) =>
+          chrome.storage.local.get("formState", (result) => resolve(result))
+        );
+        const timestamp = result?.formState?.timestamp;
+        console.log(timestamp);
+
+        if (timestamp == null || isNaN(timestamp)) {
+          return true; // treat missing or invalid timestamps as "3 days left"
+        }
+        return (timestamp + FOUR_DAYS_IN_MS) < Date.now();
+      };
+
+      console.log(await isThreeDaysLeftFromInstall());
+      
+      if (browser && STORE_LINKS[browser] && await isThreeDaysLeftFromInstall()) {
         browser_cr.storage.local.get('closeCount', function (data) {
 
           if (!data.closeCount) {
@@ -39,10 +55,10 @@
           if (!data.closeCount || data.closeCount < MAX_CLOSE_COUNT) {
             const notification = document.createElement('div');
             notification.setAttribute('id', "ext_show");
-            const logo = browser_cr.runtime.getURL('assets/img/logo.svg');
+            const logo = browser_cr.runtime.getURL('assets/icons/icon128.png');
             notification.innerHTML = `
             <div><div class="groupl">${logo ? `<img src = "${logo}" alt = "logo" /> ` : ''}
-            <h1>It would really help.</h1></div><p>If you enjoy using this extension,
+            <h1>It would really help.</h1></div><p>If you enjoy using this start page,
             would you mind rate it on the webstore,
             then?</p><a href="${STORE_LINKS[browser]}" target="_blank" id="rateLink" data-action="RATE">Rate it</a><div class="cls"><span id="closeNotification" data-action="CLOSE" style="cursor: pointer;">No,
             Thanks</span></div></div><style id="43ggfdbt5rf">#ext_show img,

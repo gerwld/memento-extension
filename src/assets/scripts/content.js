@@ -15,6 +15,7 @@
 
 // MAIN PAGE INIT ONLY (index.html)
 
+import "./units/rate.js";
 import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
 
 (() => {
