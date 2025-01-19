@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="./assets/styles/settings.css" />
 </head>
 
-<body style="background-color: #000; color: #fff" class="settings-opened">
+<body style="background-color: #000; color: #fff">
 
   <div id="background_overlay">
     <div id="background"></div>
@@ -125,7 +125,7 @@
               <select name="background_type" id="background_type">
                 <option value="unsplash">Unsplash</option>
                 <option value="local">Local File</option>
-                <option value="link">Link</option>
+                <!-- <option value="link">Link</option> -->
                 <option value="disabled">Disabled</option>
               </select>
             </div>
@@ -180,7 +180,7 @@
 
         <section class="group">
           <span class="sect_lable" data-i18n="menu_other"> Other: </span>
-          <label class="ch_lp">
+          <div class="ch_lp">
             <span class="label" data-i18n="menu_fonts">Interface Font:</span>
             <select name="font" id="font">
               <option value="default">Default</option>
@@ -196,7 +196,7 @@
               <option value="caprasimo">Caprasimo</option>
               <option value="inter">Inter</option>
             </select>
-          </label>
+          </div>
         </section>
 
     </section>
