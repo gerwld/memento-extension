@@ -231,16 +231,30 @@ task('watch', function () {
     });
 });
 
+// Watcher task to monitor changes in the src directory and run the build task
+task('watch_dev', function () {
+    console.clear();
+    console.log("Dev mode initialized.\n" + chalk.green(`${EXTENSION_NAME} - ${EXTENSION_V}\n`));
+    console.log(chalk.green("✓") + " Starting...\n" + chalk.green("✓") + " Started sucessfuly.\n");
+
+    console.log("\nBuild files located in " + chalk.hex("#205ab3")("./dist/$browsertype") + " directory.\n\n");
+
+    gulp.watch('./src/**/*', series('build_dev')).on('change', function (path, stats) {
+        console.clear();
+        console.log(`File ${link("./" + path)} was changed, running build...`);
+    });
+});
+
 task('build', series('minifyImg', "minifyCSS", "minifyJS", "minifyJSON", "minifyHTML", "addOther"));
 task('build_dev', series('minifyImg', "minifyCSS", "devJS", "minifyJSON", "minifyHTML", "addOther"));
 task('build_md', series('minifyImg', "minifyCSS", "minifyJS", "minifyJSON", "minifyHTML", "addOther", "source", "zipper"));
 
 // Task to run the build and start the watcher
-task('dev', series('build_dev', 'watch'));
+task('dev', series('build_dev', 'watch_dev'));
 // TODO: Faster Dev builds
-task('edge', series('build_dev', 'watch'));
-task('firefox', series('build_dev', 'watch'));
-task('chrome', series('build_dev', 'watch'));
+task('edge', series('build_dev', 'watch_dev'));
+task('firefox', series('build_dev', 'watch_dev'));
+task('chrome', series('build_dev', 'watch_dev'));
 
 
 task('default', series('build'));
