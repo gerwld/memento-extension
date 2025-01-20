@@ -157,8 +157,8 @@ task('addOther', async function () {
         .pipe(dest('./dist/chromium'))
         .pipe(dest('./dist/firefox'));
 
-    src('./src/manifests/manifest-chromium.json').pipe(rename("manifest.json")).pipe(dest('./dist/chromium'));
-    src('./src/manifests/manifest-firefox.json').pipe(rename("manifest.json")).pipe(dest('./dist/firefox'));
+    src('./src/manifests/chromium.json').pipe(rename("manifest.json")).pipe(dest('./dist/chromium'));
+    src('./src/manifests/firefox.json').pipe(rename("manifest.json")).pipe(dest('./dist/firefox'));
 
     src(['./_locales/**/*'])
         .pipe(dest('./dist/chromium/_locales'))
