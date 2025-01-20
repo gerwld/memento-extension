@@ -80,6 +80,7 @@ body.settings-opened .settings-drawer {
   opacity: 1;
   pointer-events: auto;
   border-right: none;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .page-content {
@@ -949,7 +950,7 @@ a.don_btn {
   position: relative;
   width: 360px;
   padding: 0;
-  margin: 0 0 11px 12px;
+  margin: 0 0 10px 12px;
   min-height: 22px;
 
   vertical-align: middle;
@@ -988,7 +989,7 @@ a.don_btn {
   flex: 0 0 27px !important;
   position: absolute;
   top: 0;
-  right: 5px;
+  right: 0;
   height: 22px;
   width: 37px;
   background-color: transparent;
@@ -1068,10 +1069,10 @@ a.don_btn {
   justify-content: space-between;
   align-items: center;
   position: relative;
-  width: 360px;
-  padding: 0;
-  margin: 0 0 11px 10px;
-  min-height: 34px;
+  width: 365px;
+  padding: 0 10px;
+  margin: 0 0 8px 0;
+  min-height: 28px;
 
   vertical-align: middle;
   user-select: none;
