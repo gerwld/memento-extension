@@ -32,7 +32,7 @@ function uploadBackgroundInitialize(callback) {
           let currentIndex = uniqueStateArray.indexOf(imageData);
           chrome.storage.local.get("formState", (result) => {
             let state = result.formState ? result.formState : {};
-            chrome.storage.local.set({ formState: {...state, "background_local": currentIndex || 0, "force_update": Math.random() + Math.random()} }, () => {
+            chrome.storage.local.set({ formState: {...state, "background_local": currentIndex || 0, "__force_update": Math.random() + Math.random()} }, () => {
               const formStateChangeEvent = new CustomEvent("formStateChange");
               window.dispatchEvent(formStateChangeEvent);
               

@@ -172,7 +172,7 @@ import uploadBackgroundInitialize from "../units/upload_background.js";
 
                 // Save the updated state if deleted current
                 if (value == state["background_local"]) {
-                  chrome.storage.local.set({ formState: { ...state, "background_local": 0, "force_update": Math.random() + Math.random() } }, () => {
+                  chrome.storage.local.set({ formState: { ...state, "background_local": 0, "__force_update": Math.random() + Math.random() } }, () => {
                     dispatchFormStateChangeEvent();
                   });
                 }
