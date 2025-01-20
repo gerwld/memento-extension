@@ -230,6 +230,11 @@ import uploadBackgroundInitialize from "../features/bg_local.js";
             if (input.type === "range") {
               input.addEventListener("change", updateState);
             } 
+
+            if (input.type === "range") {
+              // input.addEventListener("input", updateRealtimeLocal);
+            } 
+            
             
             else if (input.type !== "file") input.addEventListener("input", updateState);
           });

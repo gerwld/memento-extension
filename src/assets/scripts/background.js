@@ -24,6 +24,7 @@ const initialState = {
   time__hide_time: false,
   time__show_seconds: true,
   time__is_12_hours: getIs12HourFormat(), 
+  clock_size: 40,
   date__hide_date: false,
   background_blur: 5,
   background_brightness: 0.22,
