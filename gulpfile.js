@@ -120,25 +120,58 @@ task('minifyJS', async function () {
         .pipe(insert.prepend(COPYRIGHT))
         .pipe(dest('./dist/chromium/assets/scripts/features/'))
         .pipe(dest('./dist/firefox/assets/scripts/features/'))
+
+    src(['./src/assets/scripts/features/time/*.js'])
+        .pipe(uglify())
+        .pipe(insert.prepend(COPYRIGHT))
+        .pipe(dest('./dist/chromium/assets/scripts/features/time/'))
+        .pipe(dest('./dist/firefox/assets/scripts/features/time/'))
+
+    src(['./src/assets/scripts/features/date/*.js'])
+        .pipe(uglify())
+        .pipe(insert.prepend(COPYRIGHT))
+        .pipe(dest('./dist/chromium/assets/scripts/features/date/'))
+        .pipe(dest('./dist/firefox/assets/scripts/features/date/'))
+
+    src(['./src/assets/scripts/features/background/*.js'])
+        .pipe(uglify())
+        .pipe(insert.prepend(COPYRIGHT))
+        .pipe(dest('./dist/chromium/assets/scripts/features/background/'))
+        .pipe(dest('./dist/firefox/assets/scripts/features/background/'))
 });
 
 //## Dev JS ##//
 task('devJS', async function () {
-    src(['./src/assets/scripts/*.js'])
-        .pipe(insert.prepend(COPYRIGHT))
-        .pipe(dest('./dist/chromium/assets/scripts/'))
-        .pipe(dest('./dist/firefox/assets/scripts/'))
-
-    src(['./src/assets/scripts/functionality/*.js'])
-        .pipe(insert.prepend(COPYRIGHT))
-        .pipe(dest('./dist/chromium/assets/scripts/functionality/'))
-        .pipe(dest('./dist/firefox/assets/scripts/functionality/'))
-
-    src(['./src/assets/scripts/features/*.js'])
-        .pipe(insert.prepend(COPYRIGHT))
-        .pipe(dest('./dist/chromium/assets/scripts/features/'))
-        .pipe(dest('./dist/firefox/assets/scripts/features/'))
-});
+        src(['./src/assets/scripts/*.js'])
+            .pipe(insert.prepend(COPYRIGHT))
+            .pipe(dest('./dist/chromium/assets/scripts/'))
+            .pipe(dest('./dist/firefox/assets/scripts/'))
+    
+        src(['./src/assets/scripts/functionality/*.js'])
+            .pipe(insert.prepend(COPYRIGHT))
+            .pipe(dest('./dist/chromium/assets/scripts/functionality/'))
+            .pipe(dest('./dist/firefox/assets/scripts/functionality/'))
+    
+        src(['./src/assets/scripts/features/*.js'])
+            .pipe(insert.prepend(COPYRIGHT))
+            .pipe(dest('./dist/chromium/assets/scripts/features/'))
+            .pipe(dest('./dist/firefox/assets/scripts/features/'))
+    
+        src(['./src/assets/scripts/features/time/*.js'])
+            .pipe(insert.prepend(COPYRIGHT))
+            .pipe(dest('./dist/chromium/assets/scripts/features/time/'))
+            .pipe(dest('./dist/firefox/assets/scripts/features/time/'))
+    
+        src(['./src/assets/scripts/features/date/*.js'])
+            .pipe(insert.prepend(COPYRIGHT))
+            .pipe(dest('./dist/chromium/assets/scripts/features/date/'))
+            .pipe(dest('./dist/firefox/assets/scripts/features/date/'))
+    
+        src(['./src/assets/scripts/features/background/*.js'])
+            .pipe(insert.prepend(COPYRIGHT))
+            .pipe(dest('./dist/chromium/assets/scripts/features/background/'))
+            .pipe(dest('./dist/firefox/assets/scripts/features/background/'))
+    });
 
 //## Minify HTML ##//
 task('minifyHTML', async function () {
