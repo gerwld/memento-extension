@@ -10,14 +10,12 @@ function uploadBackgroundInitialize(callback) {
 
       // Reading the file as Data URL (onload event)
       reader.onload = (e) => {
-
         const imageData = e.target.result;
 
-        // Local state saving with Set
+        // Get savedImages from localState, if > 0 spread to state[]
         let state = [];
         const localStateBG = JSON.parse(localStorage.getItem("savedImages"));
-
-        if (Array.isArray(localStateBG)) {
+        if (Array.isArray(localStateBG) && localStateBG.length) {
           state = [...localStateBG];
         }
         state.push(imageData);
@@ -28,10 +26,11 @@ function uploadBackgroundInitialize(callback) {
         if (!chrome)
           chrome = browser;
         
-          // updating index with currentIndex
+          // Get currentIndex of current file (may vary, if was updated before)
           let currentIndex = uniqueStateArray.indexOf(imageData);
           chrome.storage.local.get("formState", (result) => {
             let state = result.formState ? result.formState : {};
+            // Set to chrome.storage.local, force_update to prevent swallow copy check (null == 0)
             chrome.storage.local.set({ formState: {...state, "background_local": currentIndex || 0, "__force_update": Math.random() + Math.random()} }, () => {
               const formStateChangeEvent = new CustomEvent("formStateChange");
               window.dispatchEvent(formStateChangeEvent);

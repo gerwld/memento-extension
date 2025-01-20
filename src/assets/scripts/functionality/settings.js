@@ -12,7 +12,7 @@
 //   - You should have received a copy of the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License
 //   - along with Memento Extension.  If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 
-import uploadBackgroundInitialize from "../units/upload_background.js";
+import uploadBackgroundInitialize from "../features/bg_local.js";
 
 // Change state, initialize state, onChange update DOM part
 (() => {

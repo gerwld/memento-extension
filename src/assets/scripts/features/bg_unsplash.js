@@ -105,7 +105,7 @@ const setUnsplashBackground = async (isDisable, isReload) => {
       // Check if the last saved image is still valid
       if (lastEntry && (Date.now() - lastEntry.timestamp) < fourHours) {
         try {
-          console.log("fetch new set_unsplash");
+          console.log("fetch new bg_unsplash");
           // Use the saved image
           const imageBlob = await downloadImage(lastEntry.item.urls.regular);
           console.log(imageBlob);

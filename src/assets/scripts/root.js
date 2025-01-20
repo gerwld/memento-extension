@@ -12,11 +12,8 @@
 //   - You should have received a copy of the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License
 //   - along with Memento Extension.  If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 
-
-// MAIN PAGE INIT ONLY (index.html)
-
-import "./units/rate.js";
-import setUnsplashBackground from "/assets/scripts/units/set_unsplash.js";
+import "./features/rate.js";
+import setUnsplashBackground from "/assets/scripts/features/bg_unsplash.js";
 
 (() => {
   "use strict";
