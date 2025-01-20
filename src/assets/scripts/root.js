@@ -26,7 +26,7 @@ optimizeResources();
   (() => {
     const browser_cr = chrome ? chrome : browser;
     const FONTS = ["roboto", "poppins", "caprasimo", "playfair", "merriweather", "noto_sans", "nunito", "montserrat", "pixelify", "gabarito", "roboto_condensed", "inter"];
-    
+
 
     // ============== STATE APPLYING PART ================ //
 
@@ -42,8 +42,8 @@ optimizeResources();
 
         setFont(state.font, FONTS);
         setCSSConstant("--bg-blur", state.background_blur, true)
-        setCSSConstant("--clock-size-multiplier", state.clock_size, false)
         setCSSConstant("--bg-brightness", state.background_brightness, false)
+        setCSSConstant("--clock-size-multiplier", state.clock_size, false)
 
 
         // Chunks that change interface based on state

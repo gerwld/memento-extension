@@ -29,20 +29,17 @@
       const browser = detectBrowser();
 
       const isThreeDaysLeftFromInstall = async () => {
-        const FOUR_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000; // 3 days in milliseconds
+        const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
         const result = await new Promise((resolve) =>
           chrome.storage.local.get("formState", (result) => resolve(result))
         );
         const timestamp = result?.formState?.timestamp;
-        console.log(timestamp);
 
         if (timestamp == null || isNaN(timestamp)) {
           return true; // treat missing or invalid timestamps as "3 days left"
         }
-        return (timestamp + FOUR_DAYS_IN_MS) < Date.now();
+        return (timestamp + THREE_DAYS_IN_MS) < Date.now();
       };
-
-      console.log(await isThreeDaysLeftFromInstall());
       
       if (browser && STORE_LINKS[browser] && await isThreeDaysLeftFromInstall()) {
         browser_cr.storage.local.get('closeCount', function (data) {

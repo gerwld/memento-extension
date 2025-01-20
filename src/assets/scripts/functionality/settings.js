@@ -13,6 +13,7 @@
 //   - along with Memento Extension.  If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 
 import uploadBackgroundInitialize from "../features/bg_local.js";
+import { setCSSConstant } from "./tools.js";
 
 // Change state, initialize state, onChange update DOM part
 (() => {
@@ -78,6 +79,29 @@ import uploadBackgroundInitialize from "../features/bg_local.js";
               }
             });
           }
+
+          // Function to update the state object and form inputs
+          function updateRealtimeLocal(event) {
+            const input = event.target;
+            const value = input.value;
+            const name = input.name;
+
+            if(isNaN(value)) return;
+
+            if(name === "clock_size") {
+              setCSSConstant("--clock-size-multiplier", value, false);
+            }
+
+            else if(name === "background_blur") {
+              setCSSConstant("--bg-blur", value, true)
+            }
+
+            else if(name === "background_brightness") {
+              setCSSConstant("--bg-brightness", value, false)
+            }
+          }
+
+          
 
           // Function to update form inputs based on the state object
           function updateFormInputs() {
@@ -232,9 +256,8 @@ import uploadBackgroundInitialize from "../features/bg_local.js";
             } 
 
             if (input.type === "range") {
-              // input.addEventListener("input", updateRealtimeLocal);
-            } 
-            
+              input.addEventListener("input", updateRealtimeLocal);
+            }     
             
             else if (input.type !== "file") input.addEventListener("input", updateState);
           });
@@ -321,7 +344,7 @@ import uploadBackgroundInitialize from "../features/bg_local.js";
 
 
 
-function d() {
+function old() {
   //   - This file is part of Memento Extension
   //  <https://github.com/gerwld/Memento-extension/blob/main/README.md>,
   //   - Copyright (C) 2023-present Memento Extension
