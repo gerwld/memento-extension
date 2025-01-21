@@ -32,12 +32,15 @@ import filter from 'gulp-filter';
 import replace from "gulp-replace";
 import zip from 'gulp-zip';
 import chalk from 'chalk';
+import path from 'path';
+import flatmap from 'gulp-flatmap';
+import fileinclude from "gulp-file-include";
 
 
 let { src, dest, task, series } = gulp;
 const link = chalk.hex('#5e98d9');
 const EXTENSION_NAME = 'memento'
-const EXTENSION_V = 'v.1.2.1'
+const EXTENSION_V = 'v.1.4.0'
 const COPYRIGHT = `//   - This file is part of Memento Extension
 //  <https://github.com/gerwld/Memento-extension/blob/main/README.md>,
 //   - Copyright (C) 2023-present Memento Extension
@@ -84,14 +87,14 @@ task('minifyImg', async function () {
 
 //## Minify CSS  ##//
 task('minifyCSS', async function () {
-    src(['./src/assets/styles/*.css', './src/assets/styles/**/*.css', './src/assets/styles/**/**/*.css'])
+    src(['./src/assets/styles/*.css', './src/assets/styles/**/*.css', './src/assets/styles/**/**/*.css', './src/assets/scripts/features/toolbar/**/*.css'])
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(autoprefix('last 2 versions'))
         .pipe(insert.prepend(`/*\n${COPYRIGHT}*/\n\n`))
         .pipe(gulpFlatten({ includeParents: 4 }))
         .pipe(dest('./dist/firefox/assets/styles/'))
 
-    src(['./src/assets/styles/*.css', './src/assets/styles/**/*.css', './src/assets/styles/**/**/*.css'])
+    src(['./src/assets/styles/*.css', './src/assets/styles/**/*.css', './src/assets/styles/**/**/*.css', './src/assets/scripts/features/toolbar/**/*.css'])
         .pipe(replace('moz-extension://', 'chrome-extension://'))
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(autoprefix('last 2 versions'))
@@ -102,91 +105,37 @@ task('minifyCSS', async function () {
 
 //## Minify JS ##//
 task('minifyJS', async function () {
-    src(['./src/assets/scripts/*.js'])
-        // .pipe(replace(/@@\//g, './'))
-        .pipe(uglify())
-        .pipe(insert.prepend(COPYRIGHT))
-        .pipe(dest('./dist/chromium/assets/scripts/'))
-        .pipe(dest('./dist/firefox/assets/scripts/'))
-
-    src(['./src/assets/scripts/functionality/*.js'])
-        .pipe(uglify())
-        .pipe(insert.prepend(COPYRIGHT))
-        .pipe(dest('./dist/chromium/assets/scripts/functionality/'))
-        .pipe(dest('./dist/firefox/assets/scripts/functionality/'))
-
-    src(['./src/assets/scripts/features/*.js'])
-        .pipe(uglify())
-        .pipe(insert.prepend(COPYRIGHT))
-        .pipe(dest('./dist/chromium/assets/scripts/features/'))
-        .pipe(dest('./dist/firefox/assets/scripts/features/'))
-
-    src(['./src/assets/scripts/features/time/*.js'])
-        .pipe(uglify())
-        .pipe(insert.prepend(COPYRIGHT))
-        .pipe(dest('./dist/chromium/assets/scripts/features/time/'))
-        .pipe(dest('./dist/firefox/assets/scripts/features/time/'))
-
-    src(['./src/assets/scripts/features/date/*.js'])
-        .pipe(uglify())
-        .pipe(insert.prepend(COPYRIGHT))
-        .pipe(dest('./dist/chromium/assets/scripts/features/date/'))
-        .pipe(dest('./dist/firefox/assets/scripts/features/date/'))
-
-    src(['./src/assets/scripts/features/background/*.js'])
-        .pipe(uglify())
-        .pipe(insert.prepend(COPYRIGHT))
-        .pipe(dest('./dist/chromium/assets/scripts/features/background/'))
-        .pipe(dest('./dist/firefox/assets/scripts/features/background/'))
-
-    src(['./src/assets/scripts/features/searchbar/*.js'])
-        .pipe(uglify())
-        .pipe(insert.prepend(COPYRIGHT))
-        .pipe(dest('./dist/chromium/assets/scripts/features/searchbar/'))
-        .pipe(dest('./dist/firefox/assets/scripts/features/searchbar/'))
+    return src('./src/assets/scripts/**/*.js') // Include all JS files recursively
+        .pipe(flatmap(function (stream, file) {
+            // Calculate the relative directory once
+            const relativePath = path.relative('./src/assets/scripts', file.base);
+            return stream
+                .pipe(uglify())
+                .pipe(insert.prepend(COPYRIGHT))
+                .pipe(dest(`./dist/chromium/assets/scripts/${relativePath}`))
+                .pipe(dest(`./dist/firefox/assets/scripts/${relativePath}`));
+        }));
 });
 
 //## Dev JS ##//
 task('devJS', async function () {
-        src(['./src/assets/scripts/*.js'])
-            .pipe(insert.prepend(COPYRIGHT))
-            .pipe(dest('./dist/chromium/assets/scripts/'))
-            .pipe(dest('./dist/firefox/assets/scripts/'))
-    
-        src(['./src/assets/scripts/functionality/*.js'])
-            .pipe(insert.prepend(COPYRIGHT))
-            .pipe(dest('./dist/chromium/assets/scripts/functionality/'))
-            .pipe(dest('./dist/firefox/assets/scripts/functionality/'))
-    
-        src(['./src/assets/scripts/features/*.js'])
-            .pipe(insert.prepend(COPYRIGHT))
-            .pipe(dest('./dist/chromium/assets/scripts/features/'))
-            .pipe(dest('./dist/firefox/assets/scripts/features/'))
-    
-        src(['./src/assets/scripts/features/time/*.js'])
-            .pipe(insert.prepend(COPYRIGHT))
-            .pipe(dest('./dist/chromium/assets/scripts/features/time/'))
-            .pipe(dest('./dist/firefox/assets/scripts/features/time/'))
-    
-        src(['./src/assets/scripts/features/date/*.js'])
-            .pipe(insert.prepend(COPYRIGHT))
-            .pipe(dest('./dist/chromium/assets/scripts/features/date/'))
-            .pipe(dest('./dist/firefox/assets/scripts/features/date/'))
-    
-        src(['./src/assets/scripts/features/background/*.js'])
-            .pipe(insert.prepend(COPYRIGHT))
-            .pipe(dest('./dist/chromium/assets/scripts/features/background/'))
-            .pipe(dest('./dist/firefox/assets/scripts/features/background/'))
-
-        src(['./src/assets/scripts/features/searchbar/*.js'])
-            .pipe(insert.prepend(COPYRIGHT))
-            .pipe(dest('./dist/chromium/assets/scripts/features/searchbar/'))
-            .pipe(dest('./dist/firefox/assets/scripts/features/searchbar/'))
-    });
+    return src('./src/assets/scripts/**/*.js') // Include all JS files recursively
+        .pipe(flatmap(function (stream, file) {
+            // Calculate the relative directory once
+            const relativePath = path.relative('./src/assets/scripts', file.base);
+            return stream
+                .pipe(dest(`./dist/chromium/assets/scripts/${relativePath}`))
+                .pipe(dest(`./dist/firefox/assets/scripts/${relativePath}`));
+        }));
+});
 
 //## Minify HTML ##//
 task('minifyHTML', async function () {
     src(['./src/*.html'])
+        .pipe(fileinclude({
+            prefix: '@@',
+            basepath: './src/assets'
+        }))
         .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(insert.prepend(`<!--\n${COPYRIGHT}-->\n\n`))
         .pipe(gulpFlatten({ includeParents: 4 }))

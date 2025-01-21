@@ -4,7 +4,7 @@
   "use strict";
   (() => {
     // const APPEAR_TIMEOUT = 10 * 1000 * 60;
-    const APPEAR_TIMEOUT = 2000;
+    const APPEAR_TIMEOUT = 1000;
     const MAX_CLOSE_COUNT = 4;
     const browser_cr = chrome ? chrome : browser;
     const STORE_LINKS = {
@@ -29,6 +29,7 @@
       const browser = detectBrowser();
 
       const isThreeDaysLeftFromInstall = async () => {
+        // return true;
         const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
         const result = await new Promise((resolve) =>
           chrome.storage.local.get("formState", (result) => resolve(result))

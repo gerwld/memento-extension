@@ -19,6 +19,7 @@ import { displayTime } from "./features/time/displayTime.js";
 import { optimizeResources, setCSSConstant, setFont } from "./functionality/tools.js";
 import "./features/rate.js";
 import { displaySearchbar } from "./features/searchbar/displaySearchbar.js";
+import { displayToolbar } from "./features/toolbar/displayToolbar.js";
 
 optimizeResources();
 
@@ -50,6 +51,7 @@ optimizeResources();
         // Chunks that change interface based on state
         displayDayAndDate({ showFullDayName: true, hideDate: !state.date__isvisible })
         displaySearchbar({hideSearchbar: !state.searchbar__isvisible, engine: state.searchbar__engine})
+        displayToolbar({hideToolbar: !state.toolbar__isvisible})
         displayTime({ hideTime: !state.time__isvisible, showSeconds: state.time__show_seconds, is12HourFormat: state.time__is_12_hours });
         setBackground(state.background_type, state.background_local)
       });

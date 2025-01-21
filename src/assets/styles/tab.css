@@ -196,6 +196,10 @@ bottom: 4.2vh;
 bottom: 4.2vmin;
 }
 
+[data-toolbar="visible"] #bgcredit_overlay {
+  left: 150px;
+}
+
 #bgcredit_overlay.hidden {
   display: none;
 }
@@ -268,3 +272,88 @@ padding-top: 1rem;
 .searchbar_input:focus {
   outline: 2px solid #a0a2a5;
 }
+
+#toolbar_bar {
+  display: none;
+}
+
+
+[data-toolbar="visible"] #toolbar_bar {
+  display: block;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba(33,33,33, 0.6);
+  border-radius: 50px;
+}
+
+#toolbar_bar button {
+  width: 50px;
+  height: 40px;
+  margin-right: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50px;
+  font-size: 1.2rem;
+  border: none;
+  color: #fff;
+  background-color: #393a3c;
+}
+
+#toolbar_bar svg {
+  width: 70%;
+  height: 70%;
+  pointer-events: none;
+  user-select: none;
+}
+
+#toolbar_bar button:hover {
+  background-color: #525458;
+}
+
+#toolbar_bar button:nth-last-child(1) {
+  margin-right: 0;
+}
+
+[data-draggable="true"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: grab;
+  transform: translate(5px, 200px);
+
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+[data-toolbar_passanim="true"] .draggable_content {
+  transition: filter 300ms ease;
+}
+
+.draggable_content {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+[data-toolbar_calculator="visible"] .draggable_content.toolbar_calculator {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+[data-toolbar_notes="visible"] .draggable_content.toolbar_notes {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+

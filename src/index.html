@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark" style="background-color: #000; color: #fff">
+<html lang="en" dir="auto" data-theme="dark" data-toolbar="visible" style="background-color: #000; color: #fff">
 
 <head>
   <meta charset="UTF-8">
@@ -10,10 +10,11 @@
     type="image/png">
   <link rel="stylesheet" href="./assets/styles/tab.css" />
   <link rel="stylesheet" href="./assets/styles/settings.css" />
+  <link rel="stylesheet" href="./assets/styles/calculator/index.css" />
 </head>
 
 <body style="background-color: #000; color: #fff" 
-class="settings-openede"
+class="settings-openefd"
 >
   
 
@@ -63,9 +64,29 @@ class="settings-openede"
     </svg>
   </button>
 
+  <aside class="toolbar" id="toolbar">
+    <div class="toolbar_bar" id="toolbar_bar">
+      <button data-type="toolbar_calculator">
+        @@include('img/calculator.svg')
+      </button>
+      <button data-type="toolbar_notes">
+        @@include('img/note.svg')
+      </button>
+    </div>
+
+
+    <div class="toolbar_calculator draggable_content" data-draggable="true" id="toolbar_calculator">
+      @@include('scripts/features/toolbar/calculator/index.html')
+    </div>
+    <div class="toolbar_notes draggable_content" data-draggable="true" id="toolbar_notes">
+      <div>$toolbar_notes</div>
+      <div>Will be available soon</div>
+      <div>.</div>
+    </div>
+  </aside>
+
   <aside class="settings-drawer" id="settingsdrawer">
     <header class="header">
-
 
       <nav class="header_nav" id="header_nav">
         <select class="btn_header lang_set emojiesfix" name="lang_set" id="lang_set">
@@ -205,7 +226,7 @@ class="settings-openede"
           <label class="ch_ip">
             <input type="checkbox" name="searchbar__isvisible" />
             <span class="ch_sp"></span>
-            <span data-i18n="mi_20">Show search bar</span>
+            <span data-i18n="mi_9">Show search bar</span>
           </label>
 
           <div class="ch_lp">
@@ -217,6 +238,15 @@ class="settings-openede"
               <option value="bing">Bing (beta)</option>
             </select>
           </div>
+        </section>
+
+        <section class="group">
+          <span class="sect_lable" data-i18n="menu_toolbar">Toolbar: </span>
+          <label class="ch_ip">
+            <input type="checkbox" name="toolbar__isvisible" />
+            <span class="ch_sp"></span>
+            <span data-i18n="mi_10">Show toolbar</span>
+          </label>
         </section>
 
         <section class="group">
@@ -244,7 +274,7 @@ class="settings-openede"
 
     <section class="footer">
       <nav class="links">
-        <a target="_blank" href="https://weblxapplications.com/memento/update#changelog" class="version">v1.2.1</a>
+        <a target="_blank" href="https://weblxapplications.com/memento/update#changelog" class="version">v1.4.0</a>
         <a target="_blank"
           href="https://docs.google.com/forms/d/e/1FAIpQLSdOJD4cPylsCaIBFT-VzuMeSTwPgJbAtlqkLfC-OAvnY1YXvA/viewform?usp=header"
           data-i18n="btn_reqfeature">Request feature</a>
@@ -265,6 +295,7 @@ class="settings-openede"
 
   <script type="module" src="/assets/scripts/functionality/settings.js"></script>
   <script src="/assets/scripts/functionality/locales.js"></script>
+  <script type="module" src="/assets/scripts/features/toolbar/displayToolbar.js"></script>
   <script type="module" src="/assets/scripts/root.js"></script>
 </body>
 

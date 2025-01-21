@@ -103,16 +103,20 @@ import { setCSSConstant } from "./tools.js";
           // Function to update form inputs based on the state object
           function updateFormInputs() {
             const inputs = document.querySelectorAll("input, select");
+            const toolbar = document.getElementById("toolbar");
             for (let i = 0; i < inputs.length; i++) {
               const input = inputs[i];
+              // to prevent toolbar update (it's segmented)
+              if (!toolbar.contains(input)) {
 
-              if (input.type === "checkbox") {
-                input.checked = state[input.name] || false;
-              }
-              if (input.type === "range" && !isInitialCall) return;
-              else if (input.type === "file") continue;
-              else {
-                input.value = state[input.name] || "";
+                if (input.type === "checkbox") {
+                  input.checked = state[input.name] || false;
+                }
+                if (input.type === "range" && !isInitialCall) return;
+                else if (input.type === "file") continue;
+                else {
+                  input.value = state[input.name] || "";
+                }
               }
 
             }

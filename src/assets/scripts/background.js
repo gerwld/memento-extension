@@ -28,7 +28,7 @@ const initialState = {
 
   clock_size: 40,
   time__isvisible: true,
-  time__show_seconds: true,
+  time__show_seconds: false,
   time__is_12_hours: getIs12HourFormat(), 
 
   date__isvisible: true,
@@ -36,7 +36,9 @@ const initialState = {
   background_blur: 5,
   background_brightness: 0.22,
   background_local: undefined, // specified image (index) in localStorage.getItem("savedImages")
-  background_link: undefined, // link of the specified image
+  background_link: undefined,  // link of the specified image
+
+  toolbar__isvisible: true,
 
   font: "caprasimo",
   timestamp: Date.now(),

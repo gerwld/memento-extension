@@ -1,0 +1,51 @@
+<div class="calc-container" id="calc_container">
+  <div class="calculator">
+    <button class="theme-toggler active" title="Toggle theme"></button>
+    <nav>
+      <a href="https://weblxapplications.com/ec/update#changelog" target="_blank" class="version">v2.0.0</a>
+      <a href="https://chromewebstore.google.com/detail/easycalc-simple-calculato/aeiedhhkddgngmoekfkmdbmiebkaddfd/reviews" target="_blank" class="version">rate it</a>
+    </nav>
+    <div class="display-screen">
+      <input type="text" disabled id="display" placeholder="0" />
+      <span></span>
+    </div>
+    <div class="buttons">
+      <section>
+        <button class="btn-operator" data-action="clear">AC</button>
+        <button class="btn-operator" data-action="backspace">C</button>
+        <button class="btn-operator" data-action="/">&divide;</button>
+        <button class="btn-operator" data-action="*">&times;</button>
+
+      </section>
+      <section>
+        <button class="btn-number" data-action="7">7</button>
+        <button class="btn-number" data-action="8">8</button>
+        <button class="btn-number" data-action="9">9</button>
+        <button class="btn-operator" data-action="-">-</button>
+      </section>
+      <section>
+        <button class="btn-number" data-action="4">4</button>
+        <button class="btn-number" data-action="5">5</button>
+        <button class="btn-number" data-action="6">6</button>
+        <button class="btn-operator" data-action="+">+</button>
+      </section>
+      <section class="btn-section">
+        <div class="group-l">
+          <div class="btn-section__row">
+            <button class="btn-number" data-action="1">1</button>
+            <button class="btn-number" data-action="2">2</button>
+            <button class="btn-number" data-action="3">3</button>
+          </div>
+          <div class="btn-section__row">
+            <button class="btn-number" data-action="0">0</button>
+            <button class="btn-operator" data-action="(">(</button>
+            <button class="btn-operator" data-action=")">)</button>
+          </div>
+        </div>
+        <button class="btn-result" data-action="result">=</button>
+      </section>
+    </div>
+  </div>
+</div>
+<script src="assets/scripts/features/toolbar/calculator/math.js"></script>
+<script src="assets/scripts/features/toolbar/calculator/index.js"></script>
