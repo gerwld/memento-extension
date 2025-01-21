@@ -23,7 +23,7 @@
 		"message": "Inne:"
 	},
 	"mi_1": {
-		"message": "Ukryj czas"
+		"message": "Pokaż czas"
 	},
 	"mi_2": {
 		"message": "Pokaż sekundy"
@@ -32,7 +32,7 @@
 		"message": "Włącz format 12-godzinny"
 	},
 	"mi_4": {
-		"message": "Ukryj datę"
+		"message": "Pokaż datę"
 	},
 	"mi_5": {
 		"message": "Intensywność rozmycia"

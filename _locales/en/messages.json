@@ -23,7 +23,7 @@
 		"message": "Other:"
 	},
 	"mi_1": {
-		"message": "Hide time"
+		"message": "Show time"
 	},
 	"mi_2": {
 		"message": "Show seconds"
@@ -32,7 +32,7 @@
 		"message": "Enable 12h format"
 	},
 	"mi_4": {
-		"message": "Hide date"
+		"message": "Show date"
 	},
 	"mi_5": {
 		"message": "Blur Intensivity"
