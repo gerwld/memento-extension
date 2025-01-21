@@ -87,15 +87,12 @@ import { setCSSConstant } from "./tools.js";
             const name = input.name;
 
             if(isNaN(value)) return;
-
-            if(name === "clock_size") {
+            else if(name === "clock_size") {
               setCSSConstant("--clock-size-multiplier", value, false);
             }
-
             else if(name === "background_blur") {
               setCSSConstant("--bg-blur", value, true)
             }
-
             else if(name === "background_brightness") {
               setCSSConstant("--bg-brightness", value, false)
             }

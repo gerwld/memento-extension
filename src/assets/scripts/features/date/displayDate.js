@@ -5,10 +5,10 @@ export const displayDayAndDate = ({ showFullDayName, hideDate }) => {
   const dayShowElement = document.querySelector("#date-element>span");
 
   if (hideDate) {
-    dayShowElement.classList.add("hiden");
+    dayShowElement.classList.add("hidden");
     return null;
   } else {
-    dayShowElement.classList.remove("hiden");
+    dayShowElement.classList.remove("hidden");
   }
 
   const daysOfWeekFull = [

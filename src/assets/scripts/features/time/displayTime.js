@@ -8,10 +8,10 @@ export const displayTime = ({ hideTime, showSeconds, is12HourFormat }) => {
   const clockSeconds = clockElement.querySelector("span.seconds");
 
   if (hideTime) {
-    clockElement.classList.add("hiden");
+    clockElement.classList.add("hidden");
     return null;
   } else {
-    clockElement.classList.remove("hiden");
+    clockElement.classList.remove("hidden");
   }
 
   let lastDisplayedTime = ""; // To track the last displayed time

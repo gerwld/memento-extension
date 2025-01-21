@@ -21,17 +21,23 @@ const DELETE_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfy3DYPCFQniaGrZjtY
 const initialState = {
   disabled: false,
   background_type: "unsplash",
-  time__hide_time: false,
+
+  clock_size: 40,
+  time__isvisible: true,
   time__show_seconds: true,
   time__is_12_hours: getIs12HourFormat(), 
-  clock_size: 40,
-  date__hide_date: false,
+
+  date__isvisible: false,
+
   background_blur: 5,
   background_brightness: 0.22,
+  background_local: undefined, // specified image (index) in localStorage.getItem("savedImages")
+  background_link: undefined, // link of the specified image
+
   font: "caprasimo",
   timestamp: Date.now(),
-  background_local: undefined, // specified image (index) in localStorage.getItem("savedImages")
-  background_link: undefined // link of the specified image
+  searchbar__isvisible: true,
+  searchbar__engine: "google",
 };
 
 

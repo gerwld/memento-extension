@@ -44,7 +44,7 @@ const appendImageToDOM = (imageBlob, selectedItem) => {
   document.querySelector("#background").appendChild(imageElement);
 
   if (selectedItem.user.name) {
-    document.querySelector("#bgcredit_overlay").classList.remove("hiden")
+    document.querySelector("#bgcredit_overlay").classList.remove("hidden")
     if (selectedItem.links.self) {
       document.querySelector("#bgcredit_overlay>a:nth-child(1)").setAttribute("href", selectedItem.links.self.replace("api.", ""));
     }

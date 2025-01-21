@@ -16,6 +16,7 @@ html {
   --bg-blur: 10px;
   --bg-brightness: 0.45;
   --clock-size-multiplier: 40;
+  overflow: hidden;
 }
 
 body {
@@ -25,6 +26,11 @@ body {
   max-height: 100vh;
   box-sizing: border-box;
   padding: 0;
+  overflow-y: scroll;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 #background_overlay {
@@ -45,11 +51,21 @@ body {
   display: none;
 }
 
+@keyframes appear_background {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 #background_overlay img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter:  blur(var(--bg-blur)) brightness(var(--bg-brightness))
+  filter:  blur(var(--bg-blur)) brightness(var(--bg-brightness));
+  animation: appear_background 300ms ease;
 }
 
 #background {
@@ -133,8 +149,8 @@ html body #btnsettings:hover {
   font-weight: 300;
 }
 
-#date-element>span.hiden,
-#time-element.hiden {
+#date-element>span.hidden,
+#time-element.hidden {
   display: none;
 }
 
@@ -215,4 +231,40 @@ bottom: 4.2vmin;
 
 #ext_show>div {
   animation: appear 1000ms ease;
+}
+
+#searchbar-element {
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+
+min-height: 100px;
+padding-top: 1rem;
+}
+
+#searchbar-element.hidden {
+  display: none;
+}
+
+.searchbar_input {
+  width: 550px;
+  max-width: 90vw;
+  height: 50px;
+  border-radius: 50px;
+  border: none;
+  background-color: #4b4c4f;
+  background-color: rgba(75, 76, 79, 0.6);
+  font-size: 1.08rem;
+  font-weight: 400;
+  padding: 0 2rem 0 50px;
+  box-sizing: border-box;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: auto 24px;
+  background-position: 15px 50%;
+}
+
+.searchbar_input:focus {
+  outline: 2px solid #a0a2a5;
 }

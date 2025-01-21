@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="./assets/styles/settings.css" />
 </head>
 
-<body style="background-color: #000; color: #fff">
+<body style="background-color: #000; color: #fff" class="settings-opened">
 
   <div id="background_overlay">
     <div id="background"></div>
@@ -26,9 +26,20 @@
       <span class="seconds"></span>
       <span class="period"></span>
     </div>
+
     <div id="date-element">
       <span> </span>
     </div>
+
+    <form id="searchbar-element">
+      <input
+       type="text" 
+       name="search_bar" 
+       placeholder="Search Google or type a URL"
+       autocomplete="off"
+       class="searchbar_input"
+       >
+    </form>
   </div>
 
 
@@ -79,14 +90,11 @@
         <section class="group">
           <span class="sect_lable" data-i18n="menu_time"> Time: </span>
 
-
           <label class="ch_ip">
-            <input type="checkbox" name="time__hide_time" />
+            <input type="checkbox" name="time__isvisible" />
             <span class="ch_sp"></span>
-            <span data-i18n="mi_1">Hide time</span>
+            <span data-i18n="mi_1">Show time</span>
           </label>
-
-
 
           <label class="ch_ip">
             <input type="checkbox" name="time__show_seconds" />
@@ -100,11 +108,22 @@
             <span data-i18n="mi_3">Enable 12h format</span>
           </label>
 
+          <label class="ch_slp">
+            <span data-i18n="mi_59">Clock size</span>
+            <input 
+              type="range" 
+              name="clock_size" 
+              data-realtime="true" 
+              min="20" max="100" 
+              step="1" 
+              value="0">
+          </label>
+
         </section>
         <section class="group">
           <span class="sect_lable" data-i18n="menu_date"> Date: </span>
           <label class="ch_ip">
-            <input type="checkbox" name="date__hide_date" />
+            <input type="checkbox" name="date__isvisible" />
             <span class="ch_sp"></span>
             <span data-i18n="mi_4">Hide date</span>
           </label>
@@ -138,7 +157,7 @@
               <span data-i18n="mi_7">Local Image (File)</span>
               <label class="ch_uppl">
                 <span>Choose files</span>
-                <input type="file" id="upload_input" accept="image/*">
+                <input type="file" id="upload_input" accept="image/*" multiple>
               </label>
             </div>
 
@@ -180,6 +199,25 @@
 
         <section class="group">
           <span class="sect_lable" data-i18n="menu_other"> Other: </span>
+          <label class="ch_ip">
+            <input type="checkbox" name="searchbar__isvisible" />
+            <span class="ch_sp"></span>
+            <span data-i18n="mi_20">Show search bar</span>
+          </label>
+
+          <div class="ch_lp">
+            <span class="label" data-i18n="menu_searchengine">Search engine:</span>
+            <select name="searchbar__engine" id="searchbar__engine">
+              <option value="google">Google</option>
+              <option value="duckduckgo">Duck Duck Go</option>
+              <option value="brave">Brave</option>
+              <option value="bing">Bing (beta)</option>
+            </select>
+          </div>
+        </section>
+
+        <section class="group">
+          <span class="sect_lable" data-i18n="menu_other"> Other: </span>
           <div class="ch_lp">
             <span class="label" data-i18n="menu_fonts">Interface Font:</span>
             <select name="font" id="font">
@@ -203,7 +241,7 @@
 
     <section class="footer">
       <nav class="links">
-        <a target="_blank" href="https://weblxapplications.com/memento/update#changelog" class="version">v1.1.0</a>
+        <a target="_blank" href="https://weblxapplications.com/memento/update#changelog" class="version">v1.2.0</a>
         <a target="_blank"
           href="https://docs.google.com/forms/d/e/1FAIpQLSdOJD4cPylsCaIBFT-VzuMeSTwPgJbAtlqkLfC-OAvnY1YXvA/viewform?usp=header"
           data-i18n="btn_reqfeature">Request feature</a>
@@ -222,9 +260,9 @@
 
   </aside>
 
-  <script type="module" src="/assets/scripts/tools/settings.js"></script>
-  <script src="/assets/scripts/tools/locales.js"></script>
-  <script type="module" src="/assets/scripts/content.js"></script>
+  <script type="module" src="/assets/scripts/functionality/settings.js"></script>
+  <script src="/assets/scripts/functionality/locales.js"></script>
+  <script type="module" src="/assets/scripts/root.js"></script>
 </body>
 
 </html>
