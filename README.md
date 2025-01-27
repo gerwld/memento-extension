@@ -8,7 +8,6 @@
 Open-source and customizable start page extension for your browser. Minimalist, lightweight and secure, Memento enhances your browsing experience with intuitive customization and a clean design.
 </p>
 
----
 
 <p align="center">
 <a rel="noreferrer noopener" href="https://chromewebstore.google.com/detail/feiooleecmhaceomemdjchnkahocjgjg"><img alt="Chrome Web Store" src="https://img.shields.io/badge/Chrome-141e24.svg?&style=for-the-badge&logo=google-chrome&logoColor=white"></a>
