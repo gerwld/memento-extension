@@ -40,7 +40,7 @@ import fileinclude from "gulp-file-include";
 let { src, dest, task, series } = gulp;
 const link = chalk.hex('#5e98d9');
 const EXTENSION_NAME = 'memento'
-const EXTENSION_V = 'v.1.4.0'
+const EXTENSION_V = 'v.1.5.0'
 const COPYRIGHT = `//   - This file is part of Memento Extension
 //  <https://github.com/gerwld/Memento-extension/blob/main/README.md>,
 //   - Copyright (C) 2023-present Memento Extension

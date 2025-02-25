@@ -3,9 +3,8 @@
 (() => {
   "use strict";
   (() => {
-    // const APPEAR_TIMEOUT = 10 * 1000 * 60;
-    const APPEAR_TIMEOUT = 1000;
-    const MAX_CLOSE_COUNT = 4;
+    const APPEAR_TIMEOUT = 100 * 1000 * 60;
+    const MAX_CLOSE_COUNT = 1;
     const browser_cr = chrome ? chrome : browser;
     const STORE_LINKS = {
       "chrome": "https://chromewebstore.google.com/detail/memento-minimalistic-home/feiooleecmhaceomemdjchnkahocjgjg",
